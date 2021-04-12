@@ -10,11 +10,33 @@
     <link rel="stylesheet" type="text/css" href="assets/login/css/global.css">
 </head>
 
+<style>
+.alert {
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+</style>
+
 <body>
     <section class="container-fluid">
         <section class="row justify-content-center">
-            <section class="col-12 col-sm-6 col-md-3">
-                <!-- <img src="assets/login/images/profile-user.png" class="bg"> -->
+            <section class="col-xl-4 col-lg-12 col-md-9">
                 <form class="form-container" method="POST" action="proses_login.php">
                     <h4 class="text-center font-weight-bold">Login</h4>
                     <div class="form-group">
@@ -28,11 +50,12 @@
                             aria-describedat="password-error" placeholder="Masukan Password" name="password">
                     </div>
 
-                    <div class="row justify-content-center">
-                        <?php if (isset($_GET['msg'])): ?>
-                        <small class="alert" role="alert"><?= $_GET['msg'];  ?></small>
-                        <?php endif ?>
+                    <?php if (isset($_GET['msg'])) : ?>
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong><?= $_GET['msg'];  ?></strong>
                     </div>
+                    <?php endif ?>
 
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
