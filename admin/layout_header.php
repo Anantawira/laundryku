@@ -28,8 +28,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle fa-fw"></i></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="../index.php">Logout</a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
                 </div>
             </li>
         </ul>
@@ -40,39 +43,40 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="index.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-home fa-fw"></i></div>
+                        <a class="nav-link <?php if($title=='Dashboard'){echo'active';} ?>" href="index.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-home fa-fw"></i>
+                            </div>
                             Dashboard
                         </a>
-                        <a class="nav-link" href="index_pengguna.php">
+                        <a class="nav-link <?php if($title=='Pengguna'){echo'active';} ?>" href="index_pengguna.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
                             Pengguna
                         </a>
-                        <a class="nav-link" href="index_outlet.php">
+                        <a class="nav-link <?php if($title=='Outlet'){echo'active';} ?>" href="index_outlet.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
                             Outlet
                         </a>
-                        <a class="nav-link" href="index_pelanggan.php">
+                        <a class="nav-link <?php if($title=='Pelanggan'){echo'active';} ?>" href="index_pelanggan.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
                             Pelanggan
                         </a>
-                        <a class="nav-link" href="index_paket.php">
+                        <a class="nav-link <?php if($title=='Paket'){echo'active';} ?>" href="index_paket.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-archive fa-fw"></i></div>
                             Paket
                         </a>
-                        <a class="nav-link" href="index_transaksi.php">
+                        <a class="nav-link <?php if($title=='Transaksi'){echo'active';} ?>" href="index_transaksi.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart fa-fw"></i></div>
                             Transaksi
                         </a>
-                        <a class="nav-link" href="index_laporan.php">
+                        <a class="nav-link <?php if($title=='Laporan'){echo'active';} ?>" href="index_laporan.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-alt fa-fw"></i></div>
                             Laporan
                         </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Login Sebagai :</div>
-                    Ananta Admin
+                    <div class="small">Login Sebagai :</div> Admin
                 </div>
             </nav>
         </div>
