@@ -2,6 +2,9 @@
 $title = 'Paket';
 require 'functions.php';
 require 'layout_header.php';
+
+$query = 'SELECT tb_outlet.nama_outlet ,tb_paket.* FROM tb_paket INNER JOIN tb_outlet ON tb_outlet.id_outlet = tb_paket.id_outlet';
+$data = ambildata($conn,$query);
 ?>
 
 <div id="layoutSidenav_content">
@@ -23,25 +26,50 @@ require 'layout_header.php';
                             Tambah</a>
                     </div>
                     <br>
+
+                    <?php 
+                    if (isset($_GET['msg'])){ ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Pesan:</strong> <?php echo $_GET['msg']; ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php } ?>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th width="4%">#</th>
                                     <th>Nama Paket</th>
                                     <th>Jenis</th>
                                     <th>Harga</th>
                                     <th>Outlet</th>
-                                    <th>Aksi</th>
+                                    <th width="12%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $no=1; foreach($data as $paket): ?>
                                 <tr>
-                                    <td>Kering</td>
-                                    <td>Kiloan</td>
-                                    <td>25000</td>
-                                    <td>Outlet Manggar</td>
-                                    <td></td>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $paket['nama_paket'] ?></td>
+                                    <td><?= $paket['jenis_paket'] ?></td>
+                                    <td><?= $paket['harga'] ?></td>
+                                    <td><?= $paket['nama_outlet'] ?></td>
+                                    <td align="center">
+                                        <div class="btn-group-sm" role="group" aria-label="Basic example">
+                                            <a href="paket_ubah.php?id=<?= $paket['id_paket']; ?>" data-toggle="tooltip"
+                                                data-placement="bottom" title="Edit" class="btn btn-success"><i
+                                                    class="fa fa-edit"></i></a>
+                                            <a href="paket_hapus.php?id=<?= $paket['id_paket']; ?>"
+                                                onclick="return confirm('Yakin hapus data ? ');" data-toggle="tooltip"
+                                                data-placement="bottom" title="Hapus" class="btn btn-danger"><i
+                                                    class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

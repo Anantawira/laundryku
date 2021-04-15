@@ -2,19 +2,23 @@
 $title = 'Pelanggan';
 require 'functions.php';
 
+$id_member = $_GET['id'];
+$queryedit = "SELECT * FROM tb_member WHERE id_member = '$id_member'";
+$edit = ambilsatubaris($conn,$queryedit);
+
 if(isset($_POST['btn-simpan'])){
-    $nama           = $_POST['nama_member'];
-    $alamat_member  = $_POST['alamat'];
-    $no_ktp         = $_POST['no_ktp']; 
-    $telp_member    = $_POST['no_tlp']; 
-    $jenis_kelamin  = $_POST['jk']; 
-    $query = "INSERT INTO tb_member (nama_member,alamat,no_ktp,tlp,jenis_kelamin) values ('$nama','$alamat_member','$no_ktp','$telp_member','$jenis_kelamin')";
+    $nama     = $_POST['nama_member'];
+    $alamat_member = $_POST['alamat'];
+    $no_ktp     = $_POST['no_ktp']; 
+    $telp_member     = $_POST['no_tlp']; 
+    $jenis_kelamin     = $_POST['jk']; 
+    $query = "UPDATE tb_member SET nama_member = '$nama', alamat = '$alamat_member', no_ktp = '$no_ktp', tlp = '$telp_member', jenis_kelamin = '$jenis_kelamin' WHERE id_member ='$id_member'";
     
     $execute = bisa($conn,$query);
     if($execute == 1){
-        header("Location: index_pelanggan.php?id=pelanggan&msg=Pelanggan Berhasil Ditambahkan");
+        header("Location: index_pelanggan.php?page=pelanggan&msg=Pelanggan Berhasil Diubah");
     }else{
-        header("Location: index_pelanggan.php?id=pelanggan&msg=Pelanggan Gagal Ditambahkan");
+        header("Location: index_pelanggan.php?page=pelanggan&msg=Pelanggan Gagal Diubah");
     }
 }
 
@@ -45,26 +49,34 @@ require 'layout_header.php';
                                 <form method="post" action="">
                                     <div class="form-group">
                                         <label>Nomor KTP</label>
-                                        <input type="number" name="no_ktp" class="form-control">
+                                        <input type="number" name="no_ktp" class="form-control"
+                                            value="<?= $edit['no_ktp'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Nama Pelanggan</label>
-                                        <input type="text" name="nama_member" class="form-control">
+                                        <input type="text" name="nama_member" class="form-control"
+                                            value="<?= $edit['nama_member'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat</label>
-                                        <textarea type="text" name="alamat" class="form-control"></textarea>
+                                        <input type="text" name="alamat" class="form-control"
+                                            value="<?= $edit['alamat'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Nomor Telepon</label>
-                                        <input type="number" name="no_tlp" class="form-control">
+                                        <input type="number" name="no_tlp" class="form-control"
+                                            value="<?= $edit['tlp'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Jenis Kelamin</label>
                                         <select name="jk" class="form-control">
                                             <option></option>
-                                            <option value="L">Laki-Laki</option>
-                                            <option value="P">Perempuan</option>
+                                            <option value="L"
+                                                <?php if($edit['jenis_kelamin']  == 'L'){echo "selected";} ?>>Laki-laki
+                                            </option>
+                                            <option value="P"
+                                                <?php if($edit['jenis_kelamin']  == 'P'){echo "selected";} ?>>Perempuan
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="text-right">

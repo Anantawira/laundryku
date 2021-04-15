@@ -2,6 +2,9 @@
 $title = 'Pengguna';
 require 'functions.php';
 require 'layout_header.php';
+
+$query = 'SELECT * FROM tb_user ORDER BY role DESC';
+$data = ambildata($conn, $query);
 ?>
 
 <div id="layoutSidenav_content">
@@ -23,24 +26,38 @@ require 'layout_header.php';
                             Tambah</a>
                     </div>
                     <br>
+
+                    <?php 
+                    if (isset($_GET['msg'])){ ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Pesan:</strong> <?php echo $_GET['msg']; ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php } ?>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th width="4%">#</th>
                                     <th>Nama</th>
                                     <th>Username</th>
                                     <th>Role</th>
-                                    <th width="15%">Aksi</th>
+                                    <th width="12%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $no=1; foreach($data as $user): ?>
                                 <tr>
-                                    <td>Ananta Admin</td>
-                                    <td>Admin</td>
-                                    <td>Admin</td>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $user['nama_user'] ?></td>
+                                    <td><?= $user['username'] ?></td>
+                                    <td><?= $user['role'] ?></td>
                                     <td align="center">
                                         <div class="btn-group-sm" role="group" aria-label="Basic example">
-                                            <a href="pengguna_edit.php?id=<?= $user['id_user']; ?>"
+                                            <a href="pengguna_ubah.php?id=<?= $user['id_user']; ?>"
                                                 data-toggle="tooltip" data-placement="bottom" title="Edit"
                                                 class="btn btn-success"><i class="fa fa-edit"></i></a>
                                             &nbsp;
@@ -51,6 +68,7 @@ require 'layout_header.php';
                                         </div>
                                     </td>
                                 </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

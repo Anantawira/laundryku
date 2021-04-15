@@ -2,6 +2,8 @@
 $title = 'Pelanggan';
 require 'functions.php';
 require 'layout_header.php';
+$query = 'SELECT * FROM tb_member';
+$data = ambildata($conn,$query);
 ?>
 
 <div id="layoutSidenav_content">
@@ -24,27 +26,52 @@ require 'layout_header.php';
                             Tambah</a>
                     </div>
                     <br>
+
+                    <?php 
+                    if (isset($_GET['msg'])){ ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Pesan:</strong> <?php echo $_GET['msg']; ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php } ?>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th width="4%">#</th>
                                     <th>Nama</th>
                                     <th>Alamat</th>
-                                    <th>Jenis Kelamin</th>
+                                    <th>JK</th>
                                     <th>No Telp</th>
                                     <th>No KTP</th>
-                                    <th>Aksi</th>
+                                    <th width="12%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $no=1; foreach($data as $member): ?>
                                 <tr>
-                                    <td>Mbak Elsa</td>
-                                    <td>Jl. Pahlawan Trip 1</td>
-                                    <td>Perempuan</td>
-                                    <td>0345798454</td>
-                                    <td>23423423423423</td>
-                                    <td></td>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $member['nama_member'] ?></td>
+                                    <td><?= $member['alamat'] ?></td>
+                                    <td><?= $member['jenis_kelamin'] ?></td>
+                                    <td><?= $member['tlp'] ?></td>
+                                    <td><?= $member['no_ktp'] ?></td>
+                                    <td align="center">
+                                        <div class="btn-group-sm" role="group" aria-label="Basic example">
+                                            <a href="pelanggan_ubah.php?id=<?= $member['id_member']; ?>"
+                                                data-toggle="tooltip" data-placement="bottom" title="Edit"
+                                                class="btn btn-success"><i class="fa fa-edit"></i></a>
+                                            <a href="pelanggan_hapus.php?id=<?= $member['id_member']; ?>"
+                                                onclick="return confirm('Yakin hapus data ? ');" data-toggle="tooltip"
+                                                data-placement="bottom" title="Hapus" class="btn btn-danger"><i
+                                                    class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

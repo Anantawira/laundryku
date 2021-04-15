@@ -2,6 +2,9 @@
 $title = 'Outlet';
 require 'functions.php';
 require 'layout_header.php';
+
+$query = 'SELECT tb_outlet.*, tb_user.nama_user FROM tb_outlet LEFT JOIN tb_user ON tb_user.id_outlet = tb_outlet.id_outlet';
+$data = ambildata($conn,$query);
 ?>
 
 <div id="layoutSidenav_content">
@@ -23,25 +26,57 @@ require 'layout_header.php';
                             Tambah</a>
                     </div>
                     <br>
+
+                    <?php 
+                    if (isset($_GET['msg'])){ ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Pesan:</strong> <?php echo $_GET['msg']; ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php } ?>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th width="4%">#</th>
                                     <th>Nama</th>
                                     <th>Owner</th>
                                     <th>No Telp</th>
                                     <th>Alamat</th>
-                                    <th>Aksi</th>
+                                    <th width="12%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $no=1; foreach($data as $user): ?>
                                 <tr>
-                                    <td>Outlet Manggar</td>
-                                    <td>Ananta Wira</td>
-                                    <td>08937498753</td>
-                                    <td>Jl. Sawojajar 1</td>
-                                    <td></td>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $user['nama_outlet'] ?></td>
+                                    <td>
+                                        <?php if($user['nama_user'] == null){
+                                            echo 'Belum Ada Owner';
+                                        }else{
+                                            echo $user['nama_user'];
+                                        } ?>
+                                    </td>
+                                    <td><?= $user['tlp'] ?></td>
+                                    <td><?= $user['alamat'] ?></td>
+                                    <td align="center">
+                                        <div class="btn-group-sm" role="group" aria-label="Basic example">
+                                            <a href="outlet_ubah.php?id=<?= $user['id_outlet']; ?>"
+                                                data-toggle="tooltip" data-placement="bottom" title="Edit"
+                                                class="btn btn-success"><i class="fa fa-edit"></i></a>
+                                            &nbsp;
+                                            <a href="outlet_hapus.php?id=<?= $user['id_outlet']; ?>"
+                                                onclick="return confirm('Yakin hapus data ? ');" data-toggle="tooltip"
+                                                data-placement="bottom" title="Hapus" class="btn btn-danger"><i
+                                                    class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

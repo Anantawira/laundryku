@@ -2,22 +2,29 @@
 $title = 'Paket';
 require 'functions.php';
 
+$jenis = ['kiloan','selimut','bedcover','kaos','lain'];
+
+$id_paket   = $_GET['id'];
+$queryedit  = "SELECT * FROM tb_paket WHERE id_paket = '$id_paket'";
+$edit = ambilsatubaris($conn,$queryedit);
+var_dump($edit);
 $query = 'SELECT * FROM tb_outlet';
 $data = ambildata($conn,$query);
 
 if(isset($_POST['btn-simpan'])){
-    $nama        = $_POST['nama_paket'];
-    $jenis_paket = $_POST['jenis_paket'];
-    $harga       = $_POST['harga'];
-    $outlet_id   = $_POST['id_outlet'];
+    $nama           = $_POST['nama_paket'];
+    $jenis_paket    = $_POST['jenis_paket'];
+    $harga          = $_POST['harga'];
+    $outlet_id      = $_POST['id_outlet'];
 
-    $query = "INSERT INTO tb_paket (id_outlet,jenis_paket,nama_paket,harga) values ('$outlet_id','$jenis_paket','$nama','$harga')";
+    $query = "UPDATE tb_paket SET nama_paket = '$nama', jenis_paket = '$jenis_paket', harga = '$harga', id_outlet = '$outlet_id' WHERE id_paket = '$id_paket'";
     
     $execute = bisa($conn,$query);
     if($execute == 1){
-        header("Location: index_paket.php?page=paket&msg=Paket Berhasil Ditambahkan");
+        header("Location: index_paket.php?page=paket&msg=Paket Berhasil Diubah");
     }else{
-        header("Location: index_paket.php?page=paket&msg=Paket Gagal Ditambahkan");
+        // 
+        echo "";
     }
 }
 
@@ -48,29 +55,34 @@ require 'layout_header.php';
                                 <form method="post" action="">
                                     <div class="form-group">
                                         <label>Nama Paket</label>
-                                        <input type="text" name="nama_paket" class="form-control">
+                                        <input type="text" name="nama_paket" class="form-control"
+                                            value="<?= $edit['nama_paket'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Jenis Paket</label>
                                         <select name="jenis_paket" class="form-control">
-                                            <option></option>
-                                            <option value="kiloan">Kiloan</option>
-                                            <option value="selimut">Selimut</option>
-                                            <option value="bedcover">Bedcover</option>
-                                            <option value="kaos">Kaos</option>
-                                            <option value="lain">Lain</option>
+                                            <?php foreach ($jenis as $key): ?>
+                                            <?php if ($key == $edit['jenis_paket']): ?>
+                                            <option value="<?= $key ?>" selected><?= $key ?></option>
+                                            <?php endif ?>
+                                            <option value="<?= $key ?>"><?= $key ?></option>
+                                            <?php endforeach ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Harga</label>
-                                        <input type="number" name="harga" class="form-control">
+                                        <input type="number" name="harga" class="form-control"
+                                            value="<?= $edit['harga'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Pilih Outlet</label>
                                         <select name="id_outlet" class="form-control">
-                                            <option></option>
                                             <?php foreach ($data as $outlet): ?>
-                                            <option value="<?= $outlet['id_outlet'] ?>"><?= $outlet['nama_outlet']; ?>
+                                            <?php if ($data['id_outlet'] == $edit['outlet_id']): ?>
+                                            <option value="<?= $outlet['id_outlet'] ?>" selected>
+                                                <?= $outlet['nama_outlet']; ?></option>
+                                            <?php endif ?>
+                                            <!-- <option value="<?= $outlet['id_outlet'] ?>"><?= $outlet['nama_outlet']; ?> -->
                                             </option>
                                             <?php endforeach ?>
                                         </select>

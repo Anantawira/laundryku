@@ -42,6 +42,25 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script src="../assets/main/dist/assets/demo/datatables-demo.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("#outlet_id").prop('disabled', true);
+    $("#role").change(function() {
+        let role = $(this).val();
+        if (role == "admin" || role == "owner") {
+            $("#outlet_id").prop('disabled', true);
+            $("#outlet_id").val("");
+        } else {
+            $("#outlet_id").prop('disabled', false);
+        }
+    });
+});
+</script>
+
 </body>
 
 </html>

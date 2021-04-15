@@ -1,25 +1,31 @@
 <?php
 $title = 'Pengguna';
 require 'functions.php';
-$outlet = ambildata($conn,'SELECT * FROM tb_outlet');
+
+$role = ['admin','owner','kasir'];
+
+$id_user = $_GET['id'];
+$queryedit = "SELECT * FROM tb_user WHERE id_user = '$id_user'";
+$edit = ambilsatubaris($conn,$queryedit);
 
 if(isset($_POST['btn-simpan'])){
     $nama     = $_POST['nama_user'];
     $username = $_POST['username'];
-    $pass     = md5($_POST['password']);
     $role     = $_POST['role'];
-    if($role == 'kasir'){
-        $id_outlet = $_POST['id_outlet'];
-        $query = "INSERT INTO tb_user (nama_user,username,password,id_outlet,role) values ('$nama','$username','$pass','$id_outlet','$role')";
+    $id_outlet = $_POST['id_outlet'];
+    if($_POST['password'] != null || $_POST['password'] == ''){
+        $pass     = md5($_POST['password']);
+        $query = "UPDATE tb_user SET nama_user = '$nama' , username = '$username' , role = '$role' , password ='$pass', id_outlet = '$id_outlet' WHERE id_user = '$id_user'";    
     }else{
-        $query = "INSERT INTO tb_user (nama_user,username,password,role) values ('$nama','$username','$pass','$role')";
-    
+        $query = "UPDATE tb_user SET nama_user = '$nama' , username = '$username' , role = '$role' ,  id_outlet = '$id_outlet' WHERE id_user = '$id_user'";
     }
+    
+    
     $execute = bisa($conn,$query);
     if($execute == 1){
-        header("Location: index_pengguna.php?page=pengguna&msg=Pengguna Berhasil Ditambahkan");
+        header('Location: index_pengguna.php?page=pengguna&msg=Pengguna Berhasil Diubah');
     }else{
-        header("Location: index_pengguna.php?page=pengguna&msg=Pengguna Gagal Ditambahkan");
+        header('Location: index_pengguna.php?page=pengguna&msg=Pengguna Gagal Diubah');
     }
 }
 
@@ -36,7 +42,7 @@ require 'layout_header.php';
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-plus mr-1"></i>
-                    Tambah Pengguna
+                    Ubah Pengguna
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
@@ -50,13 +56,15 @@ require 'layout_header.php';
                                 <form method="post" action="">
                                     <div class="form-group">
                                         <label>Nama Pengguna</label>
-                                        <input type="text" name="nama_user" class="form-control">
+                                        <input type="text" name="nama_user" class="form-control"
+                                            value="<?= $edit['nama_user'] ?>">
                                     </div>
-                                    <div class="form-group">
+                                    <div class=" form-group">
                                         <label>Username</label>
-                                        <input type="text" name="username" class="form-control">
+                                        <input type="text" name="username" class="form-control"
+                                            value="<?= $edit['username'] ?>">
                                     </div>
-                                    <div class="form-group">
+                                    <div class=" form-group">
                                         <label>Password</label>
                                         <input type="text" name="password" class="form-control">
                                     </div>
@@ -64,17 +72,23 @@ require 'layout_header.php';
                                         <label>Role</label>
                                         <select id="role" name="role" class="form-control">
                                             <option></option>
-                                            <option value="admin">Admin</option>
-                                            <option value="owner">Owner</option>
-                                            <option value="kasir">Kasir</option>
+                                            <?php foreach ($role as $key): ?>
+                                            <?php if ($key == $edit['role']): ?>
+                                            <option value="<?= $key ?>" selected><?= $key ?></option>
+                                            <?php endif ?>
+                                            <option value="<?= $key ?>"><?= ucfirst($key) ?></option>
+                                            <?php endforeach ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>*Pilih Outlet</label>
                                         <select id="outlet_id" name="id_outlet" class="form-control">
-                                            <option title="0"></option>
+                                            <option></option>
                                             <?php foreach ($outlet as $key): ?>
-                                            <option value="<?= $key['id_outlet'] ?>"><?= $key['nama_outlet'] ?></option>
+                                            <?php if ($key == $edit['id_outlet']): ?>
+                                            <option value="<?= $key ?>" selected><?= $key ?></option>
+                                            <?php endif ?>
+                                            <option value="<?= $key ?>"><?= ucfirst($key) ?></option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>

@@ -1,6 +1,22 @@
 <?php
 $title = 'Outlet';
 require 'functions.php';
+
+if(isset($_POST['btn-simpan'])){
+    $nama   = $_POST['nama_outlet'];
+    $alamat = $_POST['alamat'];
+    $telp   = $_POST['tlp'];
+
+    $query = "INSERT INTO tb_outlet (nama_outlet,alamat,tlp) values ('$nama','$alamat','$telp')";
+    
+    $execute = bisa($conn,$query);
+    if($execute == 1){
+        header("Location: index_outlet.php?page=outlet&msg=Outlet Berhasil Ditambahkan");
+    }else{
+        header("Location: index_outlet.php?page=outlet&msg=Outlet Gagal Ditambahkan");
+    }
+}
+
 require 'layout_header.php';
 ?>
 <div id="layoutSidenav_content">
@@ -28,15 +44,15 @@ require 'layout_header.php';
                                 <form method="post" action="">
                                     <div class="form-group">
                                         <label>Nama Outlet</label>
-                                        <input type="text" name="nama_user" class="form-control">
+                                        <input type="text" name="nama_outlet" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat Outlet</label>
-                                        <input type="text" name="username" class="form-control">
+                                        <textarea type="text" name="alamat" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Nomor Telepon</label>
-                                        <input type="text" name="password" class="form-control">
+                                        <input type="number" name="tlp" class="form-control">
                                     </div>
                                     <div class="text-right">
                                         <button type="reset" class="btn btn-warning">Reset</button>

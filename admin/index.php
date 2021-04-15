@@ -2,6 +2,14 @@
 $title = 'Dashboard';
 require 'functions.php';
 require 'layout_header.php';
+
+$jPengguna  = ambilsatubaris($conn,'SELECT COUNT(id_user) as jumlahpengguna FROM tb_user');
+$jTransaksi = ambilsatubaris($conn,'SELECT COUNT(id_transaksi) as jumlahtransaksi FROM tb_transaksi');
+$jPelanggan = ambilsatubaris($conn,'SELECT COUNT(id_member) as jumlahmember FROM tb_member');
+$joutlet    = ambilsatubaris($conn,'SELECT COUNT(id_outlet) as jumlahoutlet FROM tb_outlet');
+$query = "SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.total_harga FROM tb_transaksi INNER JOIN tb_member ON tb_member.id_member = tb_transaksi.id_member INNER JOIN tb_detail_transaksi ON tb_detail_transaksi.id_transaksi = tb_transaksi.id_transaksi ORDER BY tb_transaksi.id_transaksi DESC LIMIT 10";
+$data = ambildata($conn,$query);
+
 ?>
 
 <div id="layoutSidenav_content">
@@ -14,36 +22,37 @@ require 'layout_header.php';
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">PENGGUNA</div>
+                        <div class="card-body"><a class="text-white" href="index_pengguna.php">PENGGUNA</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">50</a>
+                            <a class="small text-white"><?= $jPengguna['jumlahpengguna'] ?></a>
                             <div class="small text-white"><i class="fas fa-user fa-fw"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">OUTLET</div>
+                        <div class="card-body"><a class="text-white" href="index_outlet.php">OUTLET</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">20</a>
-                            <div class="small text-white"><i class="fas fa-building fa-fw"></i></div>
+                            <a class="small text-white"><?= $joutlet['jumlahoutlet'] ?></a>
+                            <div class="small text-white"><i class="fas fa-building fa-fw"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-success text-white mb-4">
-                        <div class="card-body">PELANGGAN</div>
+                        <div class="card-body"><a class="text-white" href="index_pelanggan.php">PELANGGAN</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">40</a>
+                            <a class="small text-white"><?= $jPelanggan['jumlahmember'] ?></a>
                             <div class="small text-white"><i class="fas fa-users fa-fw"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">TRANSAKSI</div>
+                        <div class="card-body">T<a class="text-white" href="index_pelanggan.php">TRANSAKSI</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">5</a>
+                            <a class="small text-white"><?= $jTransaksi['jumlahtransaksi'] ?></a>
                             <div class="small text-white"><i class="fas fa-shopping-cart fa-fw"></i></div>
                         </div>
                     </div>
@@ -60,6 +69,7 @@ require 'layout_header.php';
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th width="4%">#</th>
                                     <th>Invoice</th>
                                     <th>Pelanggan</th>
                                     <th>Status</th>
@@ -68,13 +78,16 @@ require 'layout_header.php';
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $no=1; foreach($data as $transaksi): ?>
                                 <tr>
-                                    <td>DRY202003213927</td>
-                                    <td>Ananta Wira</td>
-                                    <td>Selesai</td>
-                                    <td>Dibayar</td>
-                                    <td>25000</td>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $transaksi['kode_invoice'] ?></td>
+                                    <td><?= $transaksi['nama_member'] ?></td>
+                                    <td><?= $transaksi['status'] ?></td>
+                                    <td><?= $transaksi['dibayar'] ?></td>
+                                    <td><?= $transaksi['total_harga'] ?></td>
                                 </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
