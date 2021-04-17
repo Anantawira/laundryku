@@ -55,7 +55,7 @@ $data = ambildata($conn,$query);
                                     <td><?= $no++ ?></td>
                                     <td><?= $paket['nama_paket'] ?></td>
                                     <td><?= $paket['jenis_paket'] ?></td>
-                                    <td><?= $paket['harga'] ?></td>
+                                    <td><?= rupiah($paket['harga']) ?></td>
                                     <td><?= $paket['nama_outlet'] ?></td>
                                     <td align="center">
                                         <div class="btn-group-sm" role="group" aria-label="Basic example">

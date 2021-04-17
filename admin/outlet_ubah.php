@@ -2,34 +2,37 @@
 $title = 'Outlet';
 require 'functions.php';
 
-$query = 'SELECT tb_outlet.*,tb_user.nama_user,tb_user.id_user FROM tb_outlet LEFT JOIN tb_user ON tb_user.id_outlet = tb_outlet.id_outlet WHERE id_outlet = ' . $_GET['id'];
-$data = ambilsatubaris($conn,$query);
+$query = 'SELECT tb_outlet.*, tb_user.nama_user,tb_user.id_user FROM tb_outlet 
+    LEFT JOIN tb_user ON tb_user.id_outlet = tb_outlet.id_outlet WHERE tb_outlet.id_outlet = ' . $_GET['id'];
+$data = ambilsatubaris($conn, $query);
 
-$query2 = 'SELECT tb_user.*,tb_outlet.nama_outlet FROM tb_outlet RIGHT JOIN tb_user ON tb_user.outlet_id = tb_outlet.id_outlet WHERE tb_user.role = "owner" order by tb_user.id_outlet asc';
-$data2 = ambildata($conn,$query2);
-if(isset($_POST['btn-simpan'])){
+$query2 = 'SELECT tb_user.*,tb_outlet.nama_outlet FROM tb_outlet 
+    RIGHT JOIN tb_user ON tb_user.id_outlet = tb_outlet.id_outlet WHERE tb_user.role = "owner" 
+    ORDER BY tb_user.id_outlet asc';
+$data2 = ambildata($conn, $query2);
+
+if (isset($_POST['btn-simpan'])) {
     $nama   = $_POST['nama_outlet'];
     $alamat = $_POST['alamat'];
     $telp   = $_POST['tlp'];
 
-    $query = "UPDATE tb_outlet SET nama_outlet = '$nama' , alamat = '$alamat' , tlp = '$telp' WHERE id_outlet = " . $_GET['id'];
-    
-    
-    if($_POST['owner_id_new']){
+    $query = "UPDATE tb_outlet SET nama_outlet = '$nama' , alamat = '$alamat' , tlp='$telp' WHERE id_outlet = " . $_GET['id'];
+
+    if ($_POST['owner_id_new']) {
         $query2 = "UPDATE tb_user SET id_outlet = '" . $_GET['id'] . "' WHERE id_user = " . $_POST['owner_id_new'];
         $query3 = "UPDATE tb_user SET id_outlet = NULL WHERE id_user = " . $data['id_user'];
-        $execute3 = bisa($conn,$query3);
-    }else{
+        $execute3 = bisa($conn, $query3);
+    } else {
         $query2 = "UPDATE tb_user SET id_outlet = '" . $_GET['id'] . "' WHERE id_user = " . $_POST['owner_id'];
     }
 
-    $execute = bisa($conn,$query);
-    $execute2 = bisa($conn,$query2);
+    $execute = bisa($conn, $query);
+    $execute2 = bisa($conn, $query2);
 
-    if($execute == 1 && $execute2 == 1){
-        header("Location: index_outlet.php?page=outlet&msg=Outlet Berhasil Ditambahkan");
-    }else{
-        echo "Gagal Tambah Data";
+    if ($execute == 1 && $execute2 == 1) {
+        header("Location: index_outlet.php?page=outlet&msg=Outlet Berhasil Diubah");
+    } else {
+        header("Location: index_outlet.php?page=outlet&msg=Outlet Gagal Diubah");
     }
 }
 
@@ -66,8 +69,8 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat Outlet</label>
-                                        <textarea type="text" name="alamat" class="form-control"
-                                            value="<?= $data['alamat']; ?>"></textarea>
+                                        <textarea type="text" name="alamat"
+                                            class="form-control"><?= $data['alamat']; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Nomor Telepon</label>

@@ -42,7 +42,7 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script src="../assets/main/dist/assets/demo/datatables-demo.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 
@@ -60,6 +60,8 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<script src="../assets/rupiah/convert.rupiah.js"></script>
 
 </body>
 

@@ -2,22 +2,22 @@
 $title = 'Paket';
 require 'functions.php';
 
-$query = 'SELECT * FROM tb_outlet';
-$data = ambildata($conn,$query);
+$data = ambildata($conn,'SELECT * FROM tb_outlet');
 
 if(isset($_POST['btn-simpan'])){
     $nama        = $_POST['nama_paket'];
     $jenis_paket = $_POST['jenis_paket'];
-    $harga       = $_POST['harga'];
-    $outlet_id   = $_POST['id_outlet'];
-
-    $query = "INSERT INTO tb_paket (id_outlet,jenis_paket,nama_paket,harga) values ('$outlet_id','$jenis_paket','$nama','$harga')";
+    $harga       = $_POST['harga'];    
+    $clear_harga = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT);     
+    $id_outlet   = $_POST['id_outlet'];    
+    
+    $query = "INSERT INTO tb_paket (id_outlet, jenis_paket, nama_paket, harga) values ('$id_outlet', '$jenis_paket', '$nama', '$clear_harga')";    
     
     $execute = bisa($conn,$query);
     if($execute == 1){
         header("Location: index_paket.php?page=paket&msg=Paket Berhasil Ditambahkan");
     }else{
-        header("Location: index_paket.php?page=paket&msg=Paket Gagal Ditambahkan");
+        header("Location: index_paket.php?page=paket&msg=Paket Gagal Ditambahakan");
     }
 }
 
@@ -63,12 +63,12 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Harga</label>
-                                        <input type="number" name="harga" class="form-control">
+                                        <input type="text" id="rupiah" name="harga" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Pilih Outlet</label>
                                         <select name="id_outlet" class="form-control">
-                                            <option></option>
+                                            <option title="0"></option>
                                             <?php foreach ($data as $outlet): ?>
                                             <option value="<?= $outlet['id_outlet'] ?>"><?= $outlet['nama_outlet']; ?>
                                             </option>

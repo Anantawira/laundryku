@@ -59,8 +59,7 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat</label>
-                                        <input type="text" name="alamat" class="form-control"
-                                            value="<?= $edit['alamat'] ?>">
+                                        <textarea name="alamat" class="form-control"><?= $edit['alamat'] ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Nomor Telepon</label>

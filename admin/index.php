@@ -50,7 +50,7 @@ $data = ambildata($conn,$query);
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">T<a class="text-white" href="index_pelanggan.php">TRANSAKSI</a></div>
+                        <div class="card-body"><a class="text-white" href="index_pelanggan.php">TRANSAKSI</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white"><?= $jTransaksi['jumlahtransaksi'] ?></a>
                             <div class="small text-white"><i class="fas fa-shopping-cart fa-fw"></i></div>
@@ -78,7 +78,7 @@ $data = ambildata($conn,$query);
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no=1; foreach($data as $transaksi): ?>
+                                <!-- <?php $no=1; foreach($data as $transaksi): ?> -->
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $transaksi['kode_invoice'] ?></td>
@@ -87,7 +87,7 @@ $data = ambildata($conn,$query);
                                     <td><?= $transaksi['dibayar'] ?></td>
                                     <td><?= $transaksi['total_harga'] ?></td>
                                 </tr>
-                                <?php endforeach; ?>
+                                <!-- <?php endforeach; ?> -->
                             </tbody>
                         </table>
                     </div>

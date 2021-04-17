@@ -34,8 +34,6 @@ function bisa($conn,$query){
     }
 }
 
-
-
 function ambilsatubaris($conn,$query){
     $db = mysqli_query($conn,$query);
     return mysqli_fetch_assoc($db);
@@ -44,6 +42,13 @@ function ambilsatubaris($conn,$query){
 function hapus($where,$table,$redirect){
     $query = 'DELETE FROM ' . $table . ' WHERE ' . $where;
     echo $query;
+}
+
+function rupiah($angka){
+	
+	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	return $hasil_rupiah;
+ 
 }
 
 ?>

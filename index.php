@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="icon" type="image/png" href="assets/main/dist/assets/img/laundry-icon.ico">
     <title>
         Laundryku | Login
     </title>

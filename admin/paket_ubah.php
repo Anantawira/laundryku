@@ -15,16 +15,16 @@ if(isset($_POST['btn-simpan'])){
     $nama           = $_POST['nama_paket'];
     $jenis_paket    = $_POST['jenis_paket'];
     $harga          = $_POST['harga'];
+    $clear_harga = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT); 
     $outlet_id      = $_POST['id_outlet'];
 
-    $query = "UPDATE tb_paket SET nama_paket = '$nama', jenis_paket = '$jenis_paket', harga = '$harga', id_outlet = '$outlet_id' WHERE id_paket = '$id_paket'";
+    $query = "UPDATE tb_paket SET nama_paket = '$nama', jenis_paket = '$jenis_paket', harga = '$clear_harga', id_outlet = '$outlet_id' WHERE id_paket = '$id_paket'";
     
     $execute = bisa($conn,$query);
     if($execute == 1){
         header("Location: index_paket.php?page=paket&msg=Paket Berhasil Diubah");
     }else{
-        // 
-        echo "";
+        header("Location: index_paket.php?page=paket&msg=Paket Gagal Diubah");
     }
 }
 
@@ -71,8 +71,8 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Harga</label>
-                                        <input type="number" name="harga" class="form-control"
-                                            value="<?= $edit['harga'] ?>">
+                                        <input type="text" name="harga" id="rupiah" class="form-control"
+                                            value="<?= rupiah($edit['harga']) ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Pilih Outlet</label>
@@ -82,7 +82,6 @@ require 'layout_header.php';
                                             <option value="<?= $outlet['id_outlet'] ?>" selected>
                                                 <?= $outlet['nama_outlet']; ?></option>
                                             <?php endif ?>
-                                            <!-- <option value="<?= $outlet['id_outlet'] ?>"><?= $outlet['nama_outlet']; ?> -->
                                             </option>
                                             <?php endforeach ?>
                                         </select>
