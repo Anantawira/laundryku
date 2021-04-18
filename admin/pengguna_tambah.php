@@ -70,7 +70,7 @@ require 'layout_header.php';
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>*Pilih Outlet</label>
+                                        <label>Pilih Outlet*</label>
                                         <select id="outlet_id" name="id_outlet" class="form-control">
                                             <option title="0"></option>
                                             <?php foreach ($outlet as $key): ?>
@@ -78,6 +78,7 @@ require 'layout_header.php';
                                             <?php endforeach ?>
                                         </select>
                                     </div>
+                                    <small class="text-danger">*Pilih outlet jika role kasir</small>
                                     <div class="text-right">
                                         <button type="reset" class="btn btn-warning">Reset</button>
                                         <button type="submit" name="btn-simpan" class="btn btn-primary">Simpan</button>

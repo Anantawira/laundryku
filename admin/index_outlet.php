@@ -50,13 +50,14 @@ $data = ambildata($conn,$query);
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no=1; foreach($data as $user): ?>
+                                <?php error_reporting(0);
+                                 $no=1; foreach($data as $user): ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $user['nama_outlet'] ?></td>
                                     <td>
                                         <?php if($user['nama_user'] == null){
-                                            echo 'Belum Ada Owner';
+                                            echo '<i>Belum Ada Owner</i>';
                                         }else{
                                             echo $user['nama_user'];
                                         } ?>

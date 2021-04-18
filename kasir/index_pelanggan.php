@@ -1,9 +1,8 @@
 <?php
-$title = 'Paket';
+$title = 'Pelanggan';
 require 'functions.php';
 require 'layout_header.php';
-
-$query = 'SELECT tb_outlet.nama_outlet ,tb_paket.* FROM tb_paket INNER JOIN tb_outlet ON tb_outlet.id_outlet = tb_paket.id_outlet';
+$query = 'SELECT * FROM tb_member';
 $data = ambildata($conn,$query);
 ?>
 
@@ -12,17 +11,18 @@ $data = ambildata($conn,$query);
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Paket</li>
+                <li class="breadcrumb-item active"><b>Pelanggan</b></li>
             </ol>
 
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table mr-1"></i>
-                    Data Paket
+                    Data Pelanggan
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="paket_tambah.php" class="btn btn-primary box-title"><i class="fa fa-plus fa-fw"></i>
+                        <a href="pelanggan_tambah.php" class="btn btn-primary box-title"><i
+                                class="fa fa-plus fa-fw"></i>
                             Tambah</a>
                     </div>
                     <br>
@@ -42,28 +42,30 @@ $data = ambildata($conn,$query);
                             <thead>
                                 <tr>
                                     <th width="4%">#</th>
-                                    <th>Nama Paket</th>
-                                    <th>Jenis</th>
-                                    <th>Harga</th>
-                                    <th>Outlet</th>
+                                    <th>Nama</th>
+                                    <th>Alamat</th>
+                                    <th>JK</th>
+                                    <th>No Telp</th>
+                                    <th>No KTP</th>
                                     <th width="12%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php error_reporting(0);
-                                $no=1; foreach($data as $paket): ?>
+                                 $no=1; foreach($data as $member): ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $paket['nama_paket'] ?></td>
-                                    <td><?= $paket['jenis_paket'] ?></td>
-                                    <td><?= rupiah($paket['harga']) ?></td>
-                                    <td><?= $paket['nama_outlet'] ?></td>
+                                    <td><?= $member['nama_member'] ?></td>
+                                    <td><?= $member['alamat'] ?></td>
+                                    <td><?= $member['jenis_kelamin'] ?></td>
+                                    <td><?= $member['tlp'] ?></td>
+                                    <td><?= $member['no_ktp'] ?></td>
                                     <td align="center">
                                         <div class="btn-group-sm" role="group" aria-label="Basic example">
-                                            <a href="paket_ubah.php?id=<?= $paket['id_paket']; ?>" data-toggle="tooltip"
-                                                data-placement="bottom" title="Edit" class="btn btn-success"><i
-                                                    class="fa fa-edit"></i></a>
-                                            <a href="paket_hapus.php?id=<?= $paket['id_paket']; ?>"
+                                            <a href="pelanggan_ubah.php?id=<?= $member['id_member']; ?>"
+                                                data-toggle="tooltip" data-placement="bottom" title="Edit"
+                                                class="btn btn-success"><i class="fa fa-edit"></i></a>
+                                            <a href="pelanggan_hapus.php?id=<?= $member['id_member']; ?>"
                                                 onclick="return confirm('Yakin hapus data ? ');" data-toggle="tooltip"
                                                 data-placement="bottom" title="Hapus" class="btn btn-danger"><i
                                                     class="fa fa-trash"></i></a>

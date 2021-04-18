@@ -5,7 +5,8 @@ require 'layout_header.php';
 
 $query = "SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.total_harga FROM tb_transaksi 
     INNER JOIN tb_member ON tb_member.id_member = tb_transaksi.id_member 
-    INNER JOIN tb_detail_transaksi ON tb_detail_transaksi.id_transaksi = tb_transaksi.id_transaksi ";
+    INNER JOIN tb_detail_transaksi ON tb_detail_transaksi.id_transaksi = tb_transaksi.id_transaksi 
+    WHERE tb_transaksi.status_bayar='belum'";
 $data = ambildata($conn, $query);
 ?>
 
@@ -24,9 +25,8 @@ $data = ambildata($conn, $query);
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="transaksi_konfirmasi.php" class="btn btn-success box-title"><i
-                                class="fa fa-check fa-fw"></i>
-                            Konfirmasi Pembayaran</a>
+                        <a href="javascript:void(0)" onclick="window.history.back();"
+                            class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>
                     <div class="table-responsive">
@@ -37,7 +37,6 @@ $data = ambildata($conn, $query);
                                     <th>Kode Transaksi</th>
                                     <th>Pelanggan</th>
                                     <th>Status</th>
-                                    <th>Status Pembayaran</th>
                                     <th>Total Harga</th>
                                     <th width="12%">Aksi</th>
                                 </tr>
@@ -51,12 +50,11 @@ $data = ambildata($conn, $query);
                                     <td><?= $transaksi['kode_invoice'] ?></td>
                                     <td><?= $transaksi['nama_member'] ?></td>
                                     <td><?= $transaksi['status'] ?></td>
-                                    <td><?= $transaksi['status_bayar'] ?></td>
-                                    <td><?= rupiah($transaksi['total_harga']) ?></td>
+                                    <td><?= rupiah($transaksi['harga']) ?></td>
                                     <td>
-                                        <a href="transaksi_detail.php?id=<?= $transaksi['id_transaksi']; ?>">
+                                        <a href="transaksi_bayar.php?id=<?= $transaksi['id_transaksi']; ?>">
                                             <button type="button" class="btn btn-success">
-                                                <i class="fa fa-eye fa-fw"></i> Detail
+                                                <i class="fa fa-check fa-fw"></i> Konfirmasi
                                             </button>
                                         </a>
                                     </td>

@@ -24,7 +24,7 @@ if ($cek > 0) {
             $_SESSION['username'] = $data['username'];
             $_SESSION['id_user'] = $data['id_user'];
             $_SESSION['id_outlet'] = $data['id_outlet'];
-            header('Location: kasir');
+            header('Location: kasir/index_pelanggan.php');
     }
     else if ($data['role'] == 'owner') 
         {

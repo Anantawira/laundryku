@@ -5,6 +5,7 @@ require 'functions.php';
 $role = ['admin','owner','kasir'];
 
 $id_user = $_GET['id'];
+
 $queryedit = "SELECT * FROM tb_user WHERE id_user = '$id_user'";
 $edit = ambilsatubaris($conn,$queryedit);
 
@@ -65,8 +66,10 @@ require 'layout_header.php';
                                             value="<?= $edit['username'] ?>">
                                     </div>
                                     <div class=" form-group">
-                                        <label>Password</label>
+                                        <label>Password*</label>
                                         <input type="text" name="password" class="form-control">
+                                        <small class="text-danger">*Kosongkan saja jika tidak akan mengubah
+                                            password</small>
                                     </div>
                                     <div class="form-group">
                                         <label>Role</label>
@@ -74,18 +77,6 @@ require 'layout_header.php';
                                             <option></option>
                                             <?php foreach ($role as $key): ?>
                                             <?php if ($key == $edit['role']): ?>
-                                            <option value="<?= $key ?>" selected><?= $key ?></option>
-                                            <?php endif ?>
-                                            <option value="<?= $key ?>"><?= ucfirst($key) ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>*Pilih Outlet</label>
-                                        <select id="outlet_id" name="id_outlet" class="form-control">
-                                            <option></option>
-                                            <?php foreach ($outlet as $key): ?>
-                                            <?php if ($key == $edit['id_outlet']): ?>
                                             <option value="<?= $key ?>" selected><?= $key ?></option>
                                             <?php endif ?>
                                             <option value="<?= $key ?>"><?= ucfirst($key) ?></option>
