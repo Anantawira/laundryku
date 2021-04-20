@@ -45,8 +45,8 @@ $data = ambildata($conn,$query);
                                     <th>Nama</th>
                                     <th>Alamat</th>
                                     <th>JK</th>
-                                    <th>No Telp</th>
-                                    <th>No KTP</th>
+                                    <th>No. Telp</th>
+                                    <th>No. KTP</th>
                                     <th width="12%">Aksi</th>
                                 </tr>
                             </thead>
@@ -56,9 +56,9 @@ $data = ambildata($conn,$query);
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $member['nama_member'] ?></td>
-                                    <td><?= $member['alamat'] ?></td>
+                                    <td><?= $member['alamat_member'] ?></td>
                                     <td><?= $member['jenis_kelamin'] ?></td>
-                                    <td><?= $member['tlp'] ?></td>
+                                    <td><?= $member['telp_member'] ?></td>
                                     <td><?= $member['no_ktp'] ?></td>
                                     <td align="center">
                                         <div class="btn-group-sm" role="group" aria-label="Basic example">

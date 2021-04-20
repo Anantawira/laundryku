@@ -4,10 +4,10 @@ require 'functions.php';
 
 if(isset($_POST['btn-simpan'])){
     $nama   = $_POST['nama_outlet'];
-    $alamat = $_POST['alamat'];
-    $telp   = $_POST['tlp'];
+    $alamat = $_POST['alamat_outlet'];
+    $telp   = $_POST['telp_outlet'];
 
-    $query = "INSERT INTO tb_outlet (nama_outlet,alamat,tlp) values ('$nama','$alamat','$telp')";
+    $query = "INSERT INTO tb_outlet (nama_outlet,alamat_outlet,telp_outlet) values ('$nama','$alamat','$telp')";
     
     $execute = bisa($conn,$query);
     if($execute == 1){
@@ -24,7 +24,7 @@ require 'layout_header.php';
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Outlet</li>
+                <li class="breadcrumb-item active"><b>Outlet</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -34,8 +34,8 @@ require 'layout_header.php';
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="javascript:void(0)" onclick="window.history.back();"
-                            class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
+                        <a href="index_outlet.php" onclick="window.history.back();" class="btn btn-primary box-title"><i
+                                class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>
                     <div class="row">
@@ -48,11 +48,11 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat Outlet</label>
-                                        <textarea type="text" name="alamat" class="form-control"></textarea>
+                                        <textarea type="text" name="alamat_outlet" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Nomor Telepon</label>
-                                        <input type="number" name="tlp" class="form-control">
+                                        <input type="number" name="telp_outlet" class="form-control">
                                     </div>
                                     <div class="text-right">
                                         <button type="reset" class="btn btn-warning">Reset</button>

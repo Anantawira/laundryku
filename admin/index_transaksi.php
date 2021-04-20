@@ -14,7 +14,7 @@ $data = ambildata($conn, $query);
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Transaksi</li>
+                <li class="breadcrumb-item active"><b>Transaksi</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -48,14 +48,14 @@ $data = ambildata($conn, $query);
                                     foreach ($data as $transaksi) : ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $transaksi['kode_invoice'] ?></td>
+                                    <td><?= $transaksi['kode_transaksi'] ?></td>
                                     <td><?= $transaksi['nama_member'] ?></td>
                                     <td><?= $transaksi['status'] ?></td>
                                     <td><?= $transaksi['status_bayar'] ?></td>
                                     <td><?= rupiah($transaksi['total_harga']) ?></td>
-                                    <td>
+                                    <td align="center">
                                         <a href="transaksi_detail.php?id=<?= $transaksi['id_transaksi']; ?>">
-                                            <button type="button" class="btn btn-success">
+                                            <button type="button" class="btn btn-success btn-sm">
                                                 <i class="fa fa-eye fa-fw"></i> Detail
                                             </button>
                                         </a>

@@ -30,7 +30,7 @@ require 'layout_header.php';
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Pengguna</li>
+                <li class="breadcrumb-item active"><b>Pengguna</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -40,7 +40,7 @@ require 'layout_header.php';
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="javascript:void(0)" onclick="window.history.back();"
+                        <a href="index_pengguna.php" onclick="window.history.back();"
                             class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>

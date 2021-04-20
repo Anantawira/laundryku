@@ -8,7 +8,7 @@ if(isset($_POST['btn-simpan'])){
     $no_ktp         = $_POST['no_ktp']; 
     $telp_member    = $_POST['no_tlp']; 
     $jenis_kelamin  = $_POST['jk']; 
-    $query = "INSERT INTO tb_member (nama_member,alamat,no_ktp,tlp,jenis_kelamin) values ('$nama','$alamat_member','$no_ktp','$telp_member','$jenis_kelamin')";
+    $query = "INSERT INTO tb_member (nama_member,alamat_member,no_ktp,telp_member,jenis_kelamin) values ('$nama','$alamat_member','$no_ktp','$telp_member','$jenis_kelamin')";
     
     $execute = bisa($conn,$query);
     if($execute == 1){
@@ -25,7 +25,7 @@ require 'layout_header.php';
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Pelanggan</li>
+                <li class="breadcrumb-item active"><b>Pelanggan</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -35,7 +35,7 @@ require 'layout_header.php';
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="javascript:void(0)" onclick="window.history.back();"
+                        <a href="index_pelanggan.php" onclick="window.history.back();"
                             class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>

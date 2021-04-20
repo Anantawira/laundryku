@@ -12,7 +12,7 @@ $data = ambildata($conn,$query);
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Outlet</li>
+                <li class="breadcrumb-item active"><b>Outlet</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -43,8 +43,8 @@ $data = ambildata($conn,$query);
                                 <tr>
                                     <th width="4%">#</th>
                                     <th>Nama</th>
-                                    <th>Owner</th>
-                                    <th>No Telp</th>
+                                    <th>Pengguna</th>
+                                    <th>No. Telp</th>
                                     <th>Alamat</th>
                                     <th width="12%">Aksi</th>
                                 </tr>
@@ -57,19 +57,18 @@ $data = ambildata($conn,$query);
                                     <td><?= $user['nama_outlet'] ?></td>
                                     <td>
                                         <?php if($user['nama_user'] == null){
-                                            echo '<i>Belum Ada Owner</i>';
+                                            echo '<i>Belum Ada Pengguna</i>';
                                         }else{
                                             echo $user['nama_user'];
                                         } ?>
                                     </td>
-                                    <td><?= $user['tlp'] ?></td>
-                                    <td><?= $user['alamat'] ?></td>
+                                    <td><?= $user['telp_outlet'] ?></td>
+                                    <td><?= $user['alamat_outlet'] ?></td>
                                     <td align="center">
                                         <div class="btn-group-sm" role="group" aria-label="Basic example">
                                             <a href="outlet_ubah.php?id=<?= $user['id_outlet']; ?>"
                                                 data-toggle="tooltip" data-placement="bottom" title="Edit"
                                                 class="btn btn-success"><i class="fa fa-edit"></i></a>
-                                            &nbsp;
                                             <a href="outlet_hapus.php?id=<?= $user['id_outlet']; ?>"
                                                 onclick="return confirm('Yakin hapus data ? ');" data-toggle="tooltip"
                                                 data-placement="bottom" title="Hapus" class="btn btn-danger"><i

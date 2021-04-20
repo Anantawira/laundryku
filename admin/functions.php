@@ -5,10 +5,10 @@ if($_SESSION){
     if($_SESSION['role'] == 'admin'){
 
     }else{
-        header('location:../index.php');
+        header('Location:../index.php');
     }
 }else{
-    header('location:../index.php');
+    header('Location:../index.php');
 }
 
 $conn = mysqli_connect('localhost','root','','laundryku');
@@ -46,7 +46,7 @@ function hapus($where,$table,$redirect){
 
 function rupiah($angka){
 	
-	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	$hasil_rupiah = "Rp " . number_format($angka,0,',','.');
 	return $hasil_rupiah;
  
 }

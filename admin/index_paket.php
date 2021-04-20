@@ -12,7 +12,7 @@ $data = ambildata($conn,$query);
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Paket</li>
+                <li class="breadcrumb-item active"><b>Paket</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -56,7 +56,7 @@ $data = ambildata($conn,$query);
                                     <td><?= $no++ ?></td>
                                     <td><?= $paket['nama_paket'] ?></td>
                                     <td><?= $paket['jenis_paket'] ?></td>
-                                    <td><?= rupiah($paket['harga']) ?></td>
+                                    <td><?= rupiah($paket['harga_paket']) ?></td>
                                     <td><?= $paket['nama_outlet'] ?></td>
                                     <td align="center">
                                         <div class="btn-group-sm" role="group" aria-label="Basic example">

@@ -12,7 +12,7 @@ $data = ambildata($conn, $query);
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Pengguna</li>
+                <li class="breadcrumb-item active"><b>Pengguna</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -61,7 +61,6 @@ $data = ambildata($conn, $query);
                                             <a href="pengguna_ubah.php?id=<?= $user['id_user']; ?>"
                                                 data-toggle="tooltip" data-placement="bottom" title="Edit"
                                                 class="btn btn-success"><i class="fa fa-edit"></i></a>
-                                            &nbsp;
                                             <a href="pengguna_hapus.php?id=<?= $user['id_user']; ?>"
                                                 onclick="return confirm('Yakin hapus data ? ');" data-toggle="tooltip"
                                                 data-placement="bottom" title="Hapus" class="btn btn-danger"><i

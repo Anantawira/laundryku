@@ -29,13 +29,13 @@ $data = ambildata($conn, $query);
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th width="3%">#</th>
                                     <th>Nama</th>
                                     <th>Alamat</th>
                                     <th>JK</th>
                                     <th>Telepon</th>
                                     <th>No. KTP</th>
-                                    <th>Aksi</th>
+                                    <th width="10%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,13 +45,13 @@ $data = ambildata($conn, $query);
                                 <tr class="odd gradeX">
                                     <td><?= $no++ ?></td>
                                     <td><?= $member['nama_member'] ?></td>
-                                    <td><?= $member['alamat'] ?></td>
+                                    <td><?= $member['alamat_member'] ?></td>
                                     <td><?= $member['jenis_kelamin'] ?></td>
-                                    <td><?= $member['tlp'] ?></td>
+                                    <td><?= $member['telp_member'] ?></td>
                                     <td><?= $member['no_ktp'] ?></td>
-                                    <td>
+                                    <td align="center">
                                         <a href="transaksi_tambah.php?id=<?= $member['id_member']; ?>">
-                                            <button type="button" class="btn btn-success">
+                                            <button type="button" class="btn btn-success btn-sm">
                                                 <i class="fa fa-check fa-fw"></i> Pilih
                                             </button>
                                         </a>

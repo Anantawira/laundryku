@@ -11,7 +11,7 @@ if(isset($_POST['btn-simpan'])){
     $clear_harga = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT);     
     $id_outlet   = $_POST['id_outlet'];    
     
-    $query = "INSERT INTO tb_paket (id_outlet, jenis_paket, nama_paket, harga) values ('$id_outlet', '$jenis_paket', '$nama', '$clear_harga')";    
+    $query = "INSERT INTO tb_paket (id_outlet, jenis_paket, nama_paket, harga_paket) values ('$id_outlet', '$jenis_paket', '$nama', '$clear_harga')";    
     
     $execute = bisa($conn,$query);
     if($execute == 1){
@@ -28,7 +28,7 @@ require 'layout_header.php';
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Paket</li>
+                <li class="breadcrumb-item active"><b>Paket</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -38,8 +38,8 @@ require 'layout_header.php';
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="javascript:void(0)" onclick="window.history.back();"
-                            class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
+                        <a href="index_paket.php" onclick="window.history.back();" class="btn btn-primary box-title"><i
+                                class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>
                     <div class="row">

@@ -25,7 +25,7 @@ $data = ambilsatubaris($conn, $query);
                             </div>
                             <div class="text-center" id="paragraf1">
                                 <h3>-- Pesanan Atas Nama <b><?= $data['nama_member'] ?></b> Berhasil Di Bayar --</h3>
-                                <h4>Kode Transaksi : <b><?= $data['kode_invoice'] ?></b></h4><br>
+                                <h4>Kode Transaksi : <b><?= $data['kode_transaksi'] ?></b></h4><br>
                                 <h4>Total Pembayaran : <b><?= rupiah($data['total_harga']) ?></b>
                                 </h4>
                                 <h4>Total Uang Bayar : <b><?= rupiah($data['total_bayar']) ?></b>

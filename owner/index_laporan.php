@@ -19,7 +19,7 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Laporan</li>
+                <li class="breadcrumb-item active"><b>Laporan</b></li>
             </ol>
 
             <div class="row">

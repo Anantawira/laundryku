@@ -15,7 +15,7 @@ $data = ambildata($conn, $query);
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Transaksi</li>
+                <li class="breadcrumb-item active"><b>Konfirmasi Transaksi</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -25,7 +25,7 @@ $data = ambildata($conn, $query);
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="javascript:void(0)" onclick="window.history.back();"
+                        <a href="index_transaksi.php" onclick="window.history.back();"
                             class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>
@@ -38,7 +38,7 @@ $data = ambildata($conn, $query);
                                     <th>Pelanggan</th>
                                     <th>Status</th>
                                     <th>Total Harga</th>
-                                    <th width="12%">Aksi</th>
+                                    <th width="14%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,13 +47,13 @@ $data = ambildata($conn, $query);
                                     foreach ($data as $transaksi) : ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $transaksi['kode_invoice'] ?></td>
+                                    <td><?= $transaksi['kode_transaksi'] ?></td>
                                     <td><?= $transaksi['nama_member'] ?></td>
                                     <td><?= $transaksi['status'] ?></td>
-                                    <td><?= rupiah($transaksi['harga']) ?></td>
-                                    <td>
+                                    <td><?= rupiah($transaksi['total_harga']) ?></td>
+                                    <td align="center">
                                         <a href="transaksi_bayar.php?id=<?= $transaksi['id_transaksi']; ?>">
-                                            <button type="button" class="btn btn-success">
+                                            <button type="button" class="btn btn-success btn-sm">
                                                 <i class="fa fa-check fa-fw"></i> Konfirmasi
                                             </button>
                                         </a>

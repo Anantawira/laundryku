@@ -17,19 +17,19 @@ $member = ambilsatubaris($conn, 'SELECT nama_member from tb_member WHERE id_memb
 $paket = ambildata($conn, 'SELECT * FROM tb_paket WHERE id_outlet = ' . $outlet_id);
 
 if (isset($_POST['btn-simpan'])) {
-    $kode_invoice = $_POST['kode_invoice'];
+    $kode_invoice = $_POST['kode_transaksi'];
 
-    $query = "INSERT INTO tb_transaksi (id_outlet,kode_invoice,id_member,tgl,batas_waktu,status,status_bayar,id_user) 
+    $query = "INSERT INTO tb_transaksi (id_outlet,kode_transaksi,id_member,tgl_transaksi,batas_waktu,status,status_bayar,id_user) 
         VALUES ('$outlet_id','$kode_invoice','$member_id','$tgl_sekarang','$batas_waktu','baru','belum','$user_id')";
 
     $execute = bisa($conn, $query);
     if ($execute == 1) {
         $paket_id = $_POST['paket_id'];
         $qty = $_POST['qty'];
-        $hargapaket = ambilsatubaris($conn, 'SELECT harga from tb_paket WHERE id_paket = ' . $paket_id);
-        $total_harga = $hargapaket['harga'] * $qty;
+        $hargapaket = ambilsatubaris($conn, 'SELECT harga_paket from tb_paket WHERE id_paket = ' . $paket_id);
+        $total_harga = $hargapaket['harga_paket'] * $qty;
         $kode_invoice;
-        $transaksi = ambilsatubaris($conn, "SELECT * FROM tb_transaksi WHERE kode_invoice = '" . $kode_invoice . "'");
+        $transaksi = ambilsatubaris($conn, "SELECT * FROM tb_transaksi WHERE kode_transaksi = '" . $kode_invoice . "'");
         $transaksi_id = $transaksi['id_transaksi'];
 
         $sqlDetail = "INSERT INTO tb_detail_transaksi (id_transaksi,id_paket,qty,total_harga) 
@@ -52,17 +52,23 @@ if (isset($_POST['btn-simpan'])) {
                 <li class="breadcrumb-item active"><b>Tambah Data Transaksi</b></li>
             </ol>
 
-            <?php 
-                    if (isset($_GET['msg'])){ ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Pesan:</strong> <?php echo $_GET['msg']; ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <?php } ?>
-
             <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-shopping-cart mr-1"></i>
+                    Tambah Transaksi
+                </div>
+
+                <?php 
+                    if (isset($_GET['msg'])){ ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Pesan:</strong> <?php echo $_GET['msg']; ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php } ?>
+
+                <!-- <div class="card mb-4"> -->
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -70,7 +76,7 @@ if (isset($_POST['btn-simpan'])) {
                                 <form method="post" action="">
                                     <div class="form-group">
                                         <label>Kode Transaksi</label>
-                                        <input class="form-control" type="text" name="kode_invoice"
+                                        <input class="form-control" type="text" name="kode_transaksi"
                                             value="<?= $invoice ?>" readonly="">
                                     </div>
                                     <div class="form-group">
@@ -86,8 +92,10 @@ if (isset($_POST['btn-simpan'])) {
                                     <div class="form-group">
                                         <label>Pilih Paket</label>
                                         <select class="form-control" name="paket_id">
+                                            <option></option>
                                             <?php foreach ($paket as $key) : ?>
-                                            <option value="<?= $key['id_paket'] ?>"><?= $key['nama_paket'];  ?></option>
+                                            <option value="<?= $key['id_paket'] ?>"><?= $key['nama_paket'];  ?>
+                                            </option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>

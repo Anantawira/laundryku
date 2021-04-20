@@ -1,5 +1,5 @@
 <?php
-$title = 'Pelanggan';
+$title = 'Transaksi';
 require 'functions.php';
 require 'layout_header.php';
 
@@ -27,7 +27,7 @@ if (isset($_POST['btn-simpan'])) {
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Pelanggan</li>
+                <li class="breadcrumb-item active"><b>Transaksi</b></li>
             </ol>
 
             <div class="card mb-4">
@@ -43,7 +43,7 @@ if (isset($_POST['btn-simpan'])) {
                                     <div class="form-group">
                                         <label>Kode Transaksi</label>
                                         <input class="form-control" type="text" name="kode_invoice"
-                                            value="<?= $data['kode_invoice'] ?>" readonly="">
+                                            value="<?= $data['kode_transaksi'] ?>" readonly="">
                                     </div>
                                     <div class="form-group">
                                         <label>Outlet</label>
@@ -67,19 +67,19 @@ if (isset($_POST['btn-simpan'])) {
                                     </div>
                                     <div class="form-group">
                                         <label>Total Harga</label>
-                                        <input class="form-control" type="number" name="total_harga"
-                                            value="<?= $data['total_harga'] ?>" readonly="">
+                                        <input class="form-control" type="text" name="total_harga"
+                                            value="<?= rupiah($data['total_harga']) ?>" readonly="">
                                     </div>
                                     <?php if ($data['total_bayar'] > 0) : ?>
                                     <div class="form-group">
                                         <label>Total Bayar</label>
                                         <input class="form-control" type="text" name="total_bayar"
-                                            value="<?= $data['total_bayar'] ?>" readonly="">
+                                            value="<?= rupiah($data['total_bayar']) ?>" readonly="">
                                     </div>
                                     <div class="form-group">
                                         <label>Di Bayar Pada Tanggal</label>
                                         <input class="form-control" type="text" name="tgl_pembayaran"
-                                            value="<?= $data['tgl_pembayaran'] ?>" readonly="">
+                                            value="<?= $data['tgl_bayar'] ?>" readonly="">
                                     </div>
                                     <?php else : ?>
                                     <div class="form-group">

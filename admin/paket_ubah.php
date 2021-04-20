@@ -7,7 +7,7 @@ $jenis = ['kiloan','selimut','bedcover','kaos','lain'];
 $id_paket   = $_GET['id'];
 $queryedit  = "SELECT * FROM tb_paket WHERE id_paket = '$id_paket'";
 $edit = ambilsatubaris($conn,$queryedit);
-var_dump($edit);
+
 $query = 'SELECT * FROM tb_outlet';
 $data = ambildata($conn,$query);
 
@@ -18,7 +18,7 @@ if(isset($_POST['btn-simpan'])){
     $clear_harga = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT); 
     $outlet_id      = $_POST['id_outlet'];
 
-    $query = "UPDATE tb_paket SET nama_paket = '$nama', jenis_paket = '$jenis_paket', harga = '$clear_harga', id_outlet = '$outlet_id' WHERE id_paket = '$id_paket'";
+    $query = "UPDATE tb_paket SET nama_paket = '$nama', jenis_paket = '$jenis_paket', harga_paket = '$clear_harga', id_outlet = '$outlet_id' WHERE id_paket = '$id_paket'";
     
     $execute = bisa($conn,$query);
     if($execute == 1){
@@ -30,23 +30,24 @@ if(isset($_POST['btn-simpan'])){
 
 require 'layout_header.php';
 ?>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Paket</li>
+                <li class="breadcrumb-item active"><b>Paket</b></li>
             </ol>
 
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-plus mr-1"></i>
-                    Tambah Paket
+                    <i class="fas fa-cog mr-1"></i>
+                    Ubah Paket
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="javascript:void(0)" onclick="window.history.back();"
-                            class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
+                        <a href="index_paket.php" onclick="window.history.back();" class="btn btn-primary box-title"><i
+                                class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>
                     <div class="row">
@@ -72,16 +73,17 @@ require 'layout_header.php';
                                     <div class="form-group">
                                         <label>Harga</label>
                                         <input type="text" name="harga" id="rupiah" class="form-control"
-                                            value="<?= rupiah($edit['harga']) ?>">
+                                            value="<?= rupiah($edit['harga_paket']) ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Pilih Outlet</label>
                                         <select name="id_outlet" class="form-control">
-                                            <?php foreach ($data as $outlet): ?>
-                                            <?php if ($data['id_outlet'] == $edit['outlet_id']): ?>
+                                            <?php foreach ($data as $outlet) : ?>
+                                            <?php if ($outlet['id_outlet'] == $edit['outlet_id']) : ?>
                                             <option value="<?= $outlet['id_outlet'] ?>" selected>
                                                 <?= $outlet['nama_outlet']; ?></option>
                                             <?php endif ?>
+                                            <option value="<?= $outlet['id_outlet'] ?>"><?= $outlet['nama_outlet']; ?>
                                             </option>
                                             <?php endforeach ?>
                                         </select>
@@ -95,6 +97,7 @@ require 'layout_header.php';
                         </div>
                     </div>
                 </div>
+            </div>
     </main>
 
 

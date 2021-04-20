@@ -12,7 +12,7 @@ if(isset($_POST['btn-simpan'])){
     $no_ktp     = $_POST['no_ktp']; 
     $telp_member     = $_POST['no_tlp']; 
     $jenis_kelamin     = $_POST['jk']; 
-    $query = "UPDATE tb_member SET nama_member = '$nama', alamat = '$alamat_member', no_ktp = '$no_ktp', tlp = '$telp_member', jenis_kelamin = '$jenis_kelamin' WHERE id_member ='$id_member'";
+    $query = "UPDATE tb_member SET nama_member = '$nama', alamat_member = '$alamat_member', no_ktp = '$no_ktp', telp_member = '$telp_member', jenis_kelamin = '$jenis_kelamin' WHERE id_member ='$id_member'";
     
     $execute = bisa($conn,$query);
     if($execute == 1){
@@ -29,17 +29,17 @@ require 'layout_header.php';
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Pelanggan</li>
+                <li class="breadcrumb-item active"><b>Pelanggan</b></li>
             </ol>
 
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-plus mr-1"></i>
-                    Tambah Pelanggan
+                    <i class="fas fa-cog mr-1"></i>
+                    Ubah Pelanggan
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="javascript:void(0)" onclick="window.history.back();"
+                        <a href="index_pelanggan.php" onclick="window.history.back();"
                             class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>
@@ -59,12 +59,13 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat</label>
-                                        <textarea name="alamat" class="form-control"><?= $edit['alamat'] ?></textarea>
+                                        <textarea name="alamat"
+                                            class="form-control"><?= $edit['alamat_member'] ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Nomor Telepon</label>
                                         <input type="number" name="no_tlp" class="form-control"
-                                            value="<?= $edit['tlp'] ?>">
+                                            value="<?= $edit['telp_member'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Jenis Kelamin</label>

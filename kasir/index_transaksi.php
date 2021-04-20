@@ -62,12 +62,12 @@ $data = ambildata($conn, $query);
                                     foreach ($data as $transaksi) : ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $transaksi['kode_invoice'] ?></td>
+                                    <td><?= $transaksi['kode_transaksi'] ?></td>
                                     <td><?= $transaksi['nama_member'] ?></td>
                                     <td><?= $transaksi['status'] ?></td>
                                     <td><?= $transaksi['status_bayar'] ?></td>
                                     <td><?= rupiah($transaksi['total_harga']) ?></td>
-                                    <td>
+                                    <td align="center">
                                         <a href="transaksi_detail.php?id=<?= $transaksi['id_transaksi']; ?>">
                                             <button type="button" class="btn btn-success">
                                                 <i class="fa fa-eye fa-fw"></i> Detail

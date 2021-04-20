@@ -13,10 +13,10 @@ $data2 = ambildata($conn, $query2);
 
 if (isset($_POST['btn-simpan'])) {
     $nama   = $_POST['nama_outlet'];
-    $alamat = $_POST['alamat'];
-    $telp   = $_POST['tlp'];
+    $alamat = $_POST['alamat_outlet'];
+    $telp   = $_POST['telp_outlet'];
 
-    $query = "UPDATE tb_outlet SET nama_outlet = '$nama' , alamat = '$alamat' , tlp='$telp' WHERE id_outlet = " . $_GET['id'];
+    $query = "UPDATE tb_outlet SET nama_outlet = '$nama' , alamat_outlet = '$alamat' , telp_outlet='$telp' WHERE id_outlet = " . $_GET['id'];
 
     if ($_POST['owner_id_new']) {
         $query2 = "UPDATE tb_user SET id_outlet = '" . $_GET['id'] . "' WHERE id_user = " . $_POST['owner_id_new'];
@@ -44,18 +44,18 @@ require 'layout_header.php';
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Outlet</li>
+                <li class="breadcrumb-item active"><b>Outlet</b></li>
             </ol>
 
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-plus mr-1"></i>
-                    Tambah Outlet
+                    <i class="fas fa-cog mr-1"></i>
+                    Ubah Outlet
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="javascript:void(0)" onclick="window.history.back();"
-                            class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
+                        <a href="index_outlet.php" onclick="window.history.back();" class="btn btn-primary box-title"><i
+                                class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                     </div>
                     <br>
                     <div class="row">
@@ -69,13 +69,13 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat Outlet</label>
-                                        <textarea type="text" name="alamat"
-                                            class="form-control"><?= $data['alamat']; ?></textarea>
+                                        <textarea type="text" name="alamat_outlet"
+                                            class="form-control"><?= $data['alamat_outlet']; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Nomor Telepon</label>
-                                        <input type="number" name="tlp" class="form-control"
-                                            value="<?= $data['tlp']; ?>">
+                                        <input type="number" name="telp_outlet" class="form-control"
+                                            value="<?= $data['telp_outlet']; ?>">
                                     </div>
                                     <?php if($data['nama_user']  == null): ?>
                                     <div class="form-group">

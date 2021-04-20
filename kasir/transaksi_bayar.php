@@ -53,7 +53,7 @@ if (isset($_POST['btn-simpan'])) {
                                     <div class="form-group">
                                         <label>Kode Transaksi</label>
                                         <input class="form-control" type="text" name="kode_invoice"
-                                            value="<?= $data['kode_invoice'] ?>" readonly>
+                                            value="<?= $data['kode_transaksi'] ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>Nama Pelanggan</label>
@@ -74,7 +74,7 @@ if (isset($_POST['btn-simpan'])) {
                                     </div>
                                     <div class="text-right">
                                         <button type="submit" class="btn btn-success" name="btn-simpan">Bayar</button>
-                                        <a href="transaksi.php" onclick="window.history.back();">
+                                        <a href="transaksi_konfirmasi.php" onclick="window.history.back();">
                                             <button type="button" class="btn btn-danger">Kembali</button>
                                         </a>
                                     </div>
