@@ -2,16 +2,20 @@
 $title = 'Paket';
 require 'functions.php';
 
-$data = ambildata($conn,'SELECT * FROM tb_outlet');
+$query = 'SELECT * FROM tb_outlet';
+$data = ambildata($conn, $query);
+
+$query2 = 'SELECT * FROM tb_kategori_paket';
+$data2 = ambildata($conn, $query2);
 
 if(isset($_POST['btn-simpan'])){
     $nama        = $_POST['nama_paket'];
-    $jenis_paket = $_POST['jenis_paket'];
+    $id_jenis    = $_POST['id_jenis_paket'];
     $harga       = $_POST['harga'];    
     $clear_harga = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT);     
     $id_outlet   = $_POST['id_outlet'];    
     
-    $query = "INSERT INTO tb_paket (id_outlet, jenis_paket, nama_paket, harga_paket) values ('$id_outlet', '$jenis_paket', '$nama', '$clear_harga')";    
+    $query = "INSERT INTO tb_paket (id_outlet, id_kategori_paket, nama_paket, harga_paket) values ('$id_outlet', '$id_jenis', '$nama', '$clear_harga')";    
     
     $execute = bisa($conn,$query);
     if($execute == 1){
@@ -52,13 +56,13 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Jenis Paket</label>
-                                        <select name="jenis_paket" class="form-control">
-                                            <option></option>
-                                            <option value="kiloan">Kiloan</option>
-                                            <option value="selimut">Selimut</option>
-                                            <option value="bedcover">Bedcover</option>
-                                            <option value="kaos">Kaos</option>
-                                            <option value="lain">Lain</option>
+                                        <select class="form-control" name="id_jenis_paket">
+                                            <option title="0"></option>
+                                            <?php foreach ($data2 as $jenispaket) : ?>
+                                            <option value="<?= $jenispaket['id_kategori_paket'] ?>">
+                                                <?= $jenispaket['nama_kategori']; ?>
+                                            </option>
+                                            <?php endforeach ?>
                                         </select>
                                     </div>
                                     <div class="form-group">

@@ -27,8 +27,8 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body">PENGHASILAN TAHUN INI</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white"><?= rupiah($tahun['total']) ?></a>
-                            <div class="small text-white"><i class="fas fa-chart-area"></i></div>
+                            <a class="large text-white"><?= rupiah($tahun['total']) ?></a>
+                            <div class="large text-white"><i class="fas fa-chart-area"></i></div>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
                     <div class="card bg-warning text-white mb-4">
                         <div class="card-body">PENGHASILAN BULAN INI</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white"><?= rupiah($bulan['total']) ?></a>
-                            <div class="small text-white"><i class="fas fa-chart-area"></i>
+                            <a class="large text-white"><?= rupiah($bulan['total']) ?></a>
+                            <div class="large text-white"><i class="fas fa-chart-area"></i>
                             </div>
                         </div>
                     </div>
@@ -46,8 +46,8 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
                     <div class="card bg-success text-white mb-4">
                         <div class="card-body">PENGHASILAN MINGGU INI</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white"><?= rupiah($minggu['total']) ?></a>
-                            <div class="small text-white"><i class="fas fa-chart-area"></i></div>
+                            <a class="large text-white"><?= rupiah($minggu['total']) ?></a>
+                            <div class="large text-white"><i class="fas fa-chart-area"></i></div>
                         </div>
                     </div>
                 </div>
@@ -55,8 +55,8 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
                     <div class="card bg-danger text-white mb-4">
                         <div class="card-body">TRANSAKSI</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white"><?= $jTransaksi['jumlahtransaksi'] ?></a>
-                            <div class="small text-white"><i class="fas fa-shopping-cart fa-fw"></i></div>
+                            <a class="large  text-white"><?= $jTransaksi['jumlahtransaksi'] ?></a>
+                            <div class="large text-white"><i class="fas fa-shopping-cart fa-fw"></i></div>
                         </div>
                     </div>
                 </div>

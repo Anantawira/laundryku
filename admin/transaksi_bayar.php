@@ -1,7 +1,6 @@
 <?php
 $title = 'Transaksi';
 require 'functions.php';
-require 'layout_header.php';
 
 $query = 'SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.total_harga FROM tb_transaksi 
     INNER JOIN tb_member ON tb_member.id_member = tb_transaksi.id_member 
@@ -25,6 +24,7 @@ if (isset($_POST['btn-simpan'])) {
         if ($execute == 1 && $execute2 == 1) {
             echo "<script>alert('OK');</script>";
             header('Location: transaksi_telah_dibayar.php?id=' . $_GET['id']);
+            exit();
         } else {
             echo "Gagal Tambah Data";
         }
@@ -33,6 +33,8 @@ if (isset($_POST['btn-simpan'])) {
         header('Location: transaksi_bayar.php?id=' . $_GET['id'] . '&msg=' . $message);
     }
 }
+
+include_once 'layout_header.php';
 ?>
 
 <div id="layoutSidenav_content">

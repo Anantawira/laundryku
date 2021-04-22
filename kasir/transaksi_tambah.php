@@ -17,17 +17,23 @@ $member = ambilsatubaris($conn, 'SELECT nama_member from tb_member WHERE id_memb
 $paket = ambildata($conn, 'SELECT * FROM tb_paket WHERE id_outlet = ' . $outlet_id);
 
 if (isset($_POST['btn-simpan'])) {
-    $kode_invoice = $_POST['kode_transaksi'];
+    $kode_invoice   = $_POST['kode_transaksi'];
+    $biaya_tambahan = $_POST['biaya_tambahan'];
+    $biaya_clear    = (int) filter_var($biaya_tambahan, FILTER_SANITIZE_NUMBER_INT);
+    $diskon         = $_POST['diskon'];
+    $diskon_clear    = (int) filter_var($diskon, FILTER_SANITIZE_NUMBER_INT);
+    $pajak          = $_POST['pajak'];
+    $pajak_clear    = (int) filter_var($pajak, FILTER_SANITIZE_NUMBER_INT);
 
-    $query = "INSERT INTO tb_transaksi (id_outlet,kode_transaksi,id_member,tgl_transaksi,batas_waktu,status,status_bayar,id_user) 
-        VALUES ('$outlet_id','$kode_invoice','$member_id','$tgl_sekarang','$batas_waktu','baru','belum','$user_id')";
+    $query = "INSERT INTO tb_transaksi (id_outlet,kode_transaksi,id_member,tgl_transaksi,batas_waktu,biaya_tambahan,diskon,pajak,status,status_bayar,id_user) 
+        VALUES ('$outlet_id','$kode_invoice','$member_id','$tgl_sekarang','$batas_waktu','$biaya_clear','$diskon_clear','$pajak_clear','baru','belum','$user_id')";
 
     $execute = bisa($conn, $query);
     if ($execute == 1) {
         $paket_id = $_POST['paket_id'];
         $qty = $_POST['qty'];
         $hargapaket = ambilsatubaris($conn, 'SELECT harga_paket from tb_paket WHERE id_paket = ' . $paket_id);
-        $total_harga = $hargapaket['harga_paket'] * $qty;
+        $total_harga = $hargapaket['harga_paket'] * $qty + $biaya_clear + $pajak_clear - $diskon_clear;
         $kode_invoice;
         $transaksi = ambilsatubaris($conn, "SELECT * FROM tb_transaksi WHERE kode_transaksi = '" . $kode_invoice . "'");
         $transaksi_id = $transaksi['id_transaksi'];
@@ -100,8 +106,20 @@ if (isset($_POST['btn-simpan'])) {
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Jumlah</label>
+                                        <label>Jumlah<small class="text-danger"> (Kilogram)</small></label>
                                         <input class="form-control" type="number" name="qty">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Biaya Tambahan</label>
+                                        <input class="form-control rupiah" type="text" name="biaya_tambahan">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Diskon</label>
+                                        <input class="form-control rupiah" type="text" name="diskon">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pajak</label>
+                                        <input class="form-control rupiah" type="text" name="pajak">
                                     </div>
                                     <div class="text-right">
                                         <button type="submit" class="btn btn-primary" name="btn-simpan">Simpan</button>

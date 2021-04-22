@@ -69,7 +69,7 @@ $data = ambildata($conn, $query);
                                     <td><?= rupiah($transaksi['total_harga']) ?></td>
                                     <td align="center">
                                         <a href="transaksi_detail.php?id=<?= $transaksi['id_transaksi']; ?>">
-                                            <button type="button" class="btn btn-success">
+                                            <button type="button" class="btn btn-success btn-sm">
                                                 <i class="fa fa-eye fa-fw"></i> Detail
                                             </button>
                                         </a>

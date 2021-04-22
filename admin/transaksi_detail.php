@@ -1,7 +1,6 @@
 <?php
 $title = 'Transaksi';
 require 'functions.php';
-require 'layout_header.php';
 
 $status = ['baru', 'proses', 'selesai', 'diambil'];
 $query = "SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.*,tb_outlet.nama_outlet,tb_paket.nama_paket 
@@ -20,6 +19,8 @@ if (isset($_POST['btn-simpan'])) {
         header("Location: index_transaksi.php?id=transaksi&msg=Status Transaksi Gagal Diubah");
     }
 }
+
+include_once 'layout_header.php';
 ?>
 
 <div id="layoutSidenav_content">
@@ -93,8 +94,20 @@ if (isset($_POST['btn-simpan'])) {
                                             value="<?= $data['batas_waktu'] ?>" readonly="">
                                     </div>
                                     <?php endif; ?>
+                                    <?php if ($data['status'] == 'diambil') : ?>
                                     <div class="form-group">
-                                        <label>Status Transaksi</label>
+                                        <label>Status Pesanan</label>
+                                        <select class="form-control" name="status" disabled>
+                                            <?php foreach ($status as $key) : ?>
+                                            <?php if ($key == $data['status']) : ?>
+                                            <option value="<?= $key ?>" selected><?= $key ?></option>
+                                            <?php endif ?>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                    <?php else : ?>
+                                    <div class="form-group">
+                                        <label>Status Pesanan</label>
                                         <select class="form-control" name="status">
                                             <?php foreach ($status as $key) : ?>
                                             <?php if ($key == $data['status']) : ?>
@@ -106,6 +119,7 @@ if (isset($_POST['btn-simpan'])) {
                                         <small class="text-danger">Klik Tombol Simpan Untuk Menyimpan Perubahan
                                             Transaksi</small>
                                     </div>
+                                    <?php endif; ?>
                                     <div class="text-right">
                                         <button type="submit" class="btn btn-primary" name="btn-simpan">Simpan</button>
                                         <a href="index_transaksi.php" onclick="window.history.back();">

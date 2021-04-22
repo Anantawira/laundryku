@@ -93,8 +93,20 @@ if (isset($_POST['btn-simpan'])) {
                                             value="<?= $data['batas_waktu'] ?>" readonly="">
                                     </div>
                                     <?php endif; ?>
+                                    <?php if ($data['status'] == 'diambil') : ?>
                                     <div class="form-group">
-                                        <label>Status Transaksi</label>
+                                        <label>Status Pesanan</label>
+                                        <select class="form-control" name="status" disabled>
+                                            <?php foreach ($status as $key) : ?>
+                                            <?php if ($key == $data['status']) : ?>
+                                            <option value="<?= $key ?>" selected><?= $key ?></option>
+                                            <?php endif ?>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                    <?php else : ?>
+                                    <div class="form-group">
+                                        <label>Status Pesanan</label>
                                         <select class="form-control" name="status">
                                             <?php foreach ($status as $key) : ?>
                                             <?php if ($key == $data['status']) : ?>
@@ -106,6 +118,7 @@ if (isset($_POST['btn-simpan'])) {
                                         <small class="text-danger">Klik Tombol Simpan Untuk Menyimpan Perubahan
                                             Transaksi</small>
                                     </div>
+                                    <?php endif; ?>
                                     <div class="text-right">
                                         <button type="submit" class="btn btn-primary" name="btn-simpan">Simpan</button>
                                         <a href="index_transaksi.php" onclick="window.history.back();">

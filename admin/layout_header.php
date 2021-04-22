@@ -62,6 +62,11 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
                             Pelanggan
                         </a>
+                        <a class="nav-link <?php if($title=='Jenis Paket'){echo'active';} ?>"
+                            href="index_jenis_paket.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-list fa-fw"></i></div>
+                            Jenis Paket
+                        </a>
                         <a class="nav-link <?php if($title=='Paket'){echo'active';} ?>" href="index_paket.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-archive fa-fw"></i></div>
                             Paket

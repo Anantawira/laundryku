@@ -24,8 +24,8 @@ $data = ambildata($conn,$query);
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body"><a class="text-white" href="index_pengguna.php">PENGGUNA</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white"><?= $jPengguna['jumlahpengguna'] ?></a>
-                            <div class="small text-white"><i class="fas fa-user fa-fw"></i></div>
+                            <a class="large text-white"><?= $jPengguna['jumlahpengguna'] ?></a>
+                            <div class="large text-white"><i class="fas fa-user fa-fw"></i></div>
                         </div>
                     </div>
                 </div>
@@ -33,8 +33,8 @@ $data = ambildata($conn,$query);
                     <div class="card bg-warning text-white mb-4">
                         <div class="card-body"><a class="text-white" href="index_outlet.php">OUTLET</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white"><?= $joutlet['jumlahoutlet'] ?></a>
-                            <div class="small text-white"><i class="fas fa-building fa-fw"></i>
+                            <a class="large text-white"><?= $joutlet['jumlahoutlet'] ?></a>
+                            <div class="large text-white"><i class="fas fa-building fa-fw"></i>
                             </div>
                         </div>
                     </div>
@@ -43,17 +43,17 @@ $data = ambildata($conn,$query);
                     <div class="card bg-success text-white mb-4">
                         <div class="card-body"><a class="text-white" href="index_pelanggan.php">PELANGGAN</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white"><?= $jPelanggan['jumlahmember'] ?></a>
-                            <div class="small text-white"><i class="fas fa-users fa-fw"></i></div>
+                            <a class="large text-white"><?= $jPelanggan['jumlahmember'] ?></a>
+                            <div class="large text-white"><i class="fas fa-users fa-fw"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-danger text-white mb-4">
-                        <div class="card-body"><a class="text-white" href="index_pelanggan.php">TRANSAKSI</a></div>
+                        <div class="card-body"><a class="text-white" href="index_transaksi.php">TRANSAKSI</a></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white"><?= $jTransaksi['jumlahtransaksi'] ?></a>
-                            <div class="small text-white"><i class="fas fa-shopping-cart fa-fw"></i></div>
+                            <a class="large text-white"><?= $jTransaksi['jumlahtransaksi'] ?></a>
+                            <div class="large text-white"><i class="fas fa-shopping-cart fa-fw"></i></div>
                         </div>
                     </div>
                 </div>

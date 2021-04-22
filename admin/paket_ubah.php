@@ -2,8 +2,6 @@
 $title = 'Paket';
 require 'functions.php';
 
-$jenis = ['kiloan','selimut','bedcover','kaos','lain'];
-
 $id_paket   = $_GET['id'];
 $queryedit  = "SELECT * FROM tb_paket WHERE id_paket = '$id_paket'";
 $edit = ambilsatubaris($conn,$queryedit);
@@ -11,14 +9,17 @@ $edit = ambilsatubaris($conn,$queryedit);
 $query = 'SELECT * FROM tb_outlet';
 $data = ambildata($conn,$query);
 
+$query2 = 'SELECT * FROM tb_kategori_paket';
+$data2 = ambildata($conn, $query2);
+
 if(isset($_POST['btn-simpan'])){
     $nama           = $_POST['nama_paket'];
-    $jenis_paket    = $_POST['jenis_paket'];
+    $id_jenis       = $_POST['id_jenis_paket'];
     $harga          = $_POST['harga'];
-    $clear_harga = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT); 
+    $clear_harga    = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT); 
     $outlet_id      = $_POST['id_outlet'];
 
-    $query = "UPDATE tb_paket SET nama_paket = '$nama', jenis_paket = '$jenis_paket', harga_paket = '$clear_harga', id_outlet = '$outlet_id' WHERE id_paket = '$id_paket'";
+    $query = "UPDATE tb_paket SET nama_paket = '$nama', id_kategori_paket = '$id_jenis', harga_paket = '$clear_harga', id_outlet = '$outlet_id' WHERE id_paket = '$id_paket'";
     
     $execute = bisa($conn,$query);
     if($execute == 1){
@@ -61,12 +62,15 @@ require 'layout_header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Jenis Paket</label>
-                                        <select name="jenis_paket" class="form-control">
-                                            <?php foreach ($jenis as $key): ?>
-                                            <?php if ($key == $edit['jenis_paket']): ?>
-                                            <option value="<?= $key ?>" selected><?= $key ?></option>
+                                        <select class="form-control" name="id_jenis_paket">
+                                            <?php foreach ($data2 as $jenispaket) : ?>
+                                            <?php if ($jenispaket['id_kategori_paket'] == $edit['id_kategori_paket']) : ?>
+                                            <option value="<?= $jenispaket['id_kategori_paket'] ?>" selected>
+                                                <?= $jenispaket['nama_kategori']; ?></option>
                                             <?php endif ?>
-                                            <option value="<?= $key ?>"><?= $key ?></option>
+                                            <option value="<?= $jenispaket['id_kategori_paket'] ?>">
+                                                <?= $jenispaket['nama_kategori']; ?>
+                                            </option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>
@@ -79,7 +83,7 @@ require 'layout_header.php';
                                         <label>Pilih Outlet</label>
                                         <select name="id_outlet" class="form-control">
                                             <?php foreach ($data as $outlet) : ?>
-                                            <?php if ($outlet['id_outlet'] == $edit['outlet_id']) : ?>
+                                            <?php if ($outlet['id_outlet'] == $edit['id_outlet']) : ?>
                                             <option value="<?= $outlet['id_outlet'] ?>" selected>
                                                 <?= $outlet['nama_outlet']; ?></option>
                                             <?php endif ?>

@@ -62,6 +62,7 @@ $(document).ready(function() {
 </script>
 
 <script src="../assets/rupiah/convert.rupiah.js"></script>
+<script src="../assets/rupiah/convert.rupiah.all.js"></script>
 
 </body>
 
