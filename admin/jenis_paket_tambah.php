@@ -5,7 +5,7 @@ require 'functions.php';
 if (isset($_POST['btn-simpan'])) {
     $nama_kategori = $_POST['nama_kategori'];
 
-    $query = "INSERT INTO tb_kategori_paket (nama_kategori) values ('$nama_kategori')";
+    $query = "Call AddKategoriPaket('$nama_kategori')";
 
     $execute = bisa($conn, $query);
     if ($execute == 1) {

@@ -19,7 +19,7 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
         <div class="container-fluid">
             <h1 class="mt-4"></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Laporan</li>
+                <li class="breadcrumb-item active"><b>Laporan</b></li>
             </ol>
 
             <div class="row">
@@ -68,11 +68,17 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
                     Data Laporan Penjualan Paket
                 </div>
                 <div class="card-body">
+                    <div class="col-m-6">
+                        <button type="button" value="print" onclick="PrintDiv();" class="btn btn-secondary"><i
+                                class="fa fa-print fa-fw"></i> Cetak Laporan
+                        </button>
+                    </div>
+                    <br>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
-                                    <th>#</th>
+                                <tr align="center">
+                                    <th width="4%">#</th>
                                     <th>Nama Paket</th>
                                     <th>Jumlah Transaksi</th>
                                     <th>Tanggal Transaksi</th>
@@ -95,6 +101,70 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
                     </div>
                 </div>
             </div>
+
+            <div id="divToPrint" style="display:none;">
+                <div style="width: 750px; margin: auto;">
+                    <br>
+                    <center><b>
+                            LAPORAN TRANSAKSI LAUNDRYKU</b><br><br>
+                        <table width="100%">
+                            <tr>
+                                <td>LAPORAN</td>
+                                <td align="right"><?php echo $tgl_sekarang ?></td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <table width="100%">
+                            <tr>
+                                <td>No.</td>
+                                <td>Nama Paket</td>
+                                <td align="center">Jumlah Transaksi</td>
+                                <td align="right">Total Transaksi</td>
+                            </tr>
+                            <?php $no = 1;
+                        foreach ($penjualan as $transaksi) : ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><?= $transaksi['nama_paket'] ?></td>
+                                <td align="center"><?= $transaksi['jumlah_paket'] ?></td>
+                                <td align="right"><?= rupiah($transaksi['total'])  ?></td>
+                            </tr>
+                            <?php endforeach ?>
+                        </table>
+                        <hr>
+                        <table width="100%">
+                            <tr>
+                                <td width="76%" align="right">
+                                    Penghasilan Minggu Ini :
+                                </td>
+                                <td width="23%" align="right">
+                                    <?= rupiah($minggu['total']) ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="76%" align="right">
+                                    Penghasilan Bulan Ini :
+                                </td>
+                                <td width="23%" align="right">
+                                    <?= rupiah($bulan['total']) ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="76%" align="right">
+                                    Penghasilan Tahun Ini :
+                                </td>
+                                <td width="23%" align="right">
+                                    <?= rupiah($tahun['total']) ?>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        Terima Kasih <br>
+                        Laundryku
+                    </center>
+                </div>
+            </div>
+
         </div>
     </main>
 

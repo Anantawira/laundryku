@@ -3,9 +3,7 @@ $title = 'Transaksi';
 require 'functions.php';
 require 'layout_header.php';
 
-$query = "SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.total_harga FROM tb_transaksi 
-    INNER JOIN tb_member ON tb_member.id_member = tb_transaksi.id_member 
-    INNER JOIN tb_detail_transaksi ON tb_detail_transaksi.id_transaksi = tb_transaksi.id_transaksi ";
+$query = "Call GetAllTransaksi()";
 $data = ambildata($conn, $query);
 ?>
 
@@ -46,7 +44,7 @@ $data = ambildata($conn, $query);
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr align="center">
                                     <th width="4%">#</th>
                                     <th>Kode Transaksi</th>
                                     <th>Pelanggan</th>

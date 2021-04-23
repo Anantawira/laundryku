@@ -1,6 +1,9 @@
 <?php 
 require 'functions.php';
-$sql = "DELETE FROM tb_outlet WHERE id_outlet = " . $_GET['id'];
+
+$id_outlet = $_GET['id'];
+
+$sql = "Call DeleteOutlet('$id_outlet')";
 $exe = mysqli_query($conn,$sql);
 
 if($exe){

@@ -64,6 +64,19 @@ $(document).ready(function() {
 <script src="../assets/rupiah/convert.rupiah.js"></script>
 <script src="../assets/rupiah/convert.rupiah.all.js"></script>
 
+<script type="text/javascript">
+function PrintDiv() {
+    var divToPrint = document.getElementById(
+        'divToPrint');
+    var popupWin = window.open('', '_blank');
+    popupWin.document.open();
+    popupWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML +
+        '</html>'
+    );
+    popupWin.document.close();
+}
+</script>
+
 </body>
 
 </html>

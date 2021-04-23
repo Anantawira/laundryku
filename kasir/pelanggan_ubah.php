@@ -3,7 +3,7 @@ $title = 'Pelanggan';
 require 'functions.php';
 
 $id_member = $_GET['id'];
-$queryedit = "SELECT * FROM tb_member WHERE id_member = '$id_member'";
+$queryedit = "Call GetAllPelangganId('$id_member')";
 $edit = ambilsatubaris($conn,$queryedit);
 
 if(isset($_POST['btn-simpan'])){
@@ -12,7 +12,7 @@ if(isset($_POST['btn-simpan'])){
     $no_ktp     = $_POST['no_ktp']; 
     $telp_member     = $_POST['no_tlp']; 
     $jenis_kelamin     = $_POST['jk']; 
-    $query = "UPDATE tb_member SET nama_member = '$nama', alamat_member = '$alamat_member', no_ktp = '$no_ktp', telp_member = '$telp_member', jenis_kelamin = '$jenis_kelamin' WHERE id_member ='$id_member'";
+    $query = "Call UpdatePelanggan('$nama','$alamat_member','$no_ktp','$telp_member','$jenis_kelamin','$id_member')";
     
     $execute = bisa($conn,$query);
     if($execute == 1){

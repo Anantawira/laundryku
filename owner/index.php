@@ -68,9 +68,9 @@ $data = ambildata($conn,$query);
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr align="center">
                                     <th width="4%">#</th>
-                                    <th>Invoice</th>
+                                    <th>Kode Transaksi</th>
                                     <th>Pelanggan</th>
                                     <th>Status</th>
                                     <th>Pembayaran</th>

@@ -9,17 +9,31 @@ $id_user = $_GET['id'];
 $queryedit = "SELECT * FROM tb_user WHERE id_user = '$id_user'";
 $edit = ambilsatubaris($conn,$queryedit);
 
+$query = 'SELECT * FROM tb_outlet';
+$data = ambildata($conn,$query);
+
 if(isset($_POST['btn-simpan'])){
-    $nama     = $_POST['nama_user'];
-    $username = $_POST['username'];
-    $role     = $_POST['role'];
-    $id_outlet = $_POST['id_outlet'];
-    if($_POST['password'] != null || $_POST['password'] == ''){
-        $pass     = md5($_POST['password']);
-        $query = "UPDATE tb_user SET nama_user = '$nama' , username = '$username' , role = '$role' , password ='$pass', id_outlet = '$id_outlet' WHERE id_user = '$id_user'";    
-    }else{
-        $query = "UPDATE tb_user SET nama_user = '$nama' , username = '$username' , role = '$role' ,  id_outlet = '$id_outlet' WHERE id_user = '$id_user'";
+    // $nama     = $_POST['nama_user'];
+    // $username = $_POST['username'];
+    // $role     = $_POST['role'];
+    // $id_outlet = $_POST['id_outlet'];
+    // if($_POST['password'] != null || $_POST['password'] == ''){
+    //     $pass     = md5($_POST['password']);
+    //     $query = "UPDATE tb_user SET nama_user = '$nama' , username = '$username' , role = '$role' , password ='$pass' WHERE id_user = '$id_user'";    
+    // }else{
+    //     $query = "UPDATE tb_user SET nama_user = '$nama' , username = '$username' , role = '$role' WHERE id_user = '$id_user'";
+    // }
+
+    $query = "UPDATE tb_user SET nama_user ='" . $_POST['nama_user'] . "', username ='" . $_POST['username'] . "', role ='" . $_POST['role'] . "', id_outlet = '" . $_POST['id_outlet']."'";
+    $password = $_POST['password'];
+    if (!empty($password)) {
+        if ($password) {
+            $query .= " ,password='" . md5($password) . "'";
+        } else {
+            header('Location: index_pengguna.php?page=pengguna&msg=Pengguna Gagal Diubah');
+        }
     }
+    $query .= " WHERE id_user = '$id_user'";
     
     
     $execute = bisa($conn,$query);
@@ -58,14 +72,14 @@ require 'layout_header.php';
                                     <div class="form-group">
                                         <label>Nama Pengguna</label>
                                         <input type="text" name="nama_user" class="form-control"
-                                            value="<?= $edit['nama_user'] ?>">
+                                            value="<?= $edit['nama_user'] ?>" readonly>
                                     </div>
                                     <div class=" form-group">
                                         <label>Username</label>
                                         <input type="text" name="username" class="form-control"
-                                            value="<?= $edit['username'] ?>">
+                                            value="<?= $edit['username'] ?>" readonly>
                                     </div>
-                                    <div class=" form-group">
+                                    <div class=" form-group" hidden>
                                         <label>Password*</label>
                                         <input type="text" name="password" class="form-control">
                                         <small class="text-danger">*Kosongkan saja jika tidak akan mengubah
@@ -83,6 +97,21 @@ require 'layout_header.php';
                                             <?php endforeach ?>
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Pilih Outlet*</label>
+                                        <select id="outlet_id" name="id_outlet" class="form-control">
+                                            <option></option>
+                                            <?php foreach ($data as $outlet) : ?>
+                                            <?php if ($outlet['id_outlet'] == $edit['id_outlet']) : ?>
+                                            <option value="<?= $outlet['id_outlet'] ?>" selected>
+                                                <?= $outlet['nama_outlet']; ?></option>
+                                            <?php endif ?>
+                                            <option value="<?= $outlet['id_outlet'] ?>"><?= $outlet['nama_outlet']; ?>
+                                            </option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                    <small class="text-danger">*Pilih outlet jika role kasir</small>
                                     <div class="text-right">
                                         <button type="reset" class="btn btn-warning">Reset</button>
                                         <button type="submit" name="btn-simpan" class="btn btn-primary">Simpan</button>

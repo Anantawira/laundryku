@@ -71,8 +71,8 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
-                                    <th>#</th>
+                                <tr align="center">
+                                    <th width="4%">#</th>
                                     <th>Nama Paket</th>
                                     <th>Jumlah Transaksi</th>
                                     <th>Tanggal Transaksi</th>

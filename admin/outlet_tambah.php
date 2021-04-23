@@ -7,7 +7,7 @@ if(isset($_POST['btn-simpan'])){
     $alamat = $_POST['alamat_outlet'];
     $telp   = $_POST['telp_outlet'];
 
-    $query = "INSERT INTO tb_outlet (nama_outlet,alamat_outlet,telp_outlet) values ('$nama','$alamat','$telp')";
+    $query = "Call AddOutlet('$nama','$alamat','$telp')";
     
     $execute = bisa($conn,$query);
     if($execute == 1){

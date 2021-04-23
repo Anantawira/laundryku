@@ -3,7 +3,7 @@ $title = 'Outlet';
 require 'functions.php';
 require 'layout_header.php';
 
-$query = 'SELECT tb_outlet.*, tb_user.nama_user FROM tb_outlet LEFT JOIN tb_user ON tb_user.id_outlet = tb_outlet.id_outlet';
+$query = 'Call GetAllOutlet()';
 $data = ambildata($conn,$query);
 ?>
 
@@ -40,7 +40,7 @@ $data = ambildata($conn,$query);
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr align="center">
                                     <th width="4%">#</th>
                                     <th>Nama</th>
                                     <th>Pengguna</th>

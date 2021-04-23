@@ -15,7 +15,7 @@ if(isset($_POST['btn-simpan'])){
     $clear_harga = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT);     
     $id_outlet   = $_POST['id_outlet'];    
     
-    $query = "INSERT INTO tb_paket (id_outlet, id_kategori_paket, nama_paket, harga_paket) values ('$id_outlet', '$id_jenis', '$nama', '$clear_harga')";    
+    $query = "Call AddPaket('$id_outlet', '$id_jenis', '$nama', '$clear_harga')";    
     
     $execute = bisa($conn,$query);
     if($execute == 1){

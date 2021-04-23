@@ -8,7 +8,7 @@ if(isset($_POST['btn-simpan'])){
     $no_ktp         = $_POST['no_ktp']; 
     $telp_member    = $_POST['no_tlp']; 
     $jenis_kelamin  = $_POST['jk']; 
-    $query = "INSERT INTO tb_member (nama_member,alamat_member,no_ktp,telp_member,jenis_kelamin) values ('$nama','$alamat_member','$no_ktp','$telp_member','$jenis_kelamin')";
+    $query = "Call AddPelanggan('$nama','$alamat_member','$no_ktp','$telp_member','$jenis_kelamin')";
     
     $execute = bisa($conn,$query);
     if($execute == 1){

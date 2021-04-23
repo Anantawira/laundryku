@@ -10,9 +10,9 @@ if(isset($_POST['btn-simpan'])){
     $role     = $_POST['role'];
     if($role == 'kasir'){
         $id_outlet = $_POST['id_outlet'];
-        $query = "INSERT INTO tb_user (nama_user,username,password,id_outlet,role) values ('$nama','$username','$pass','$id_outlet','$role')";
+        $query = "Call AddPenggunaIdOutlet('$nama','$username','$pass','$id_outlet','$role')";
     }else{
-        $query = "INSERT INTO tb_user (nama_user,username,password,role) values ('$nama','$username','$pass','$role')";
+        $query = "Call AddPengguna('$nama','$username','$pass','$role')";
     
     }
     $execute = bisa($conn,$query);

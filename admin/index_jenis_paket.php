@@ -3,7 +3,7 @@ $title = 'Jenis Paket';
 require 'functions.php';
 require 'layout_header.php';
 
-$query = "SELECT * FROM tb_kategori_paket";
+$query = "Call GetAllJenisPaket()";
 $data = ambildata($conn, $query);
 
 ?>
@@ -42,7 +42,7 @@ $data = ambildata($conn, $query);
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr align="center">
                                     <th width="4%">#</th>
                                     <th>Nama Jenis Paket</th>
                                     <th width="12%">Aksi</th>

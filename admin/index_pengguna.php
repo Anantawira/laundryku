@@ -3,7 +3,7 @@ $title = 'Pengguna';
 require 'functions.php';
 require 'layout_header.php';
 
-$query = 'SELECT * FROM tb_user ORDER BY role DESC';
+$query = 'Call GetAllPengguna()';
 $data = ambildata($conn, $query);
 ?>
 
@@ -40,7 +40,7 @@ $data = ambildata($conn, $query);
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr align="center">
                                     <th width="4%">#</th>
                                     <th>Nama</th>
                                     <th>Username</th>

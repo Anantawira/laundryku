@@ -19,7 +19,7 @@ if(isset($_POST['btn-simpan'])){
     $clear_harga    = (int) filter_var($harga, FILTER_SANITIZE_NUMBER_INT); 
     $outlet_id      = $_POST['id_outlet'];
 
-    $query = "UPDATE tb_paket SET nama_paket = '$nama', id_kategori_paket = '$id_jenis', harga_paket = '$clear_harga', id_outlet = '$outlet_id' WHERE id_paket = '$id_paket'";
+    $query = "Call UpdatePaket('$nama','$id_jenis','$clear_harga','$outlet_id','$id_paket')";
     
     $execute = bisa($conn,$query);
     if($execute == 1){

@@ -1,6 +1,9 @@
 <?php 
 require 'functions.php';
-$sql = "DELETE FROM tb_paket WHERE id_paket = " . $_GET['id'];
+
+$id_paket = $_GET['id'];
+
+$sql = "Call DeletePaket('$id_paket')";
 $exe = mysqli_query($conn,$sql);
 
 if($exe){

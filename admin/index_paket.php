@@ -3,9 +3,7 @@ $title = 'Paket';
 require 'functions.php';
 require 'layout_header.php';
 
-$query = 'SELECT tb_outlet.nama_outlet, tb_kategori_paket.nama_kategori, tb_paket.* FROM tb_paket 
-    INNER JOIN tb_outlet ON tb_paket.id_outlet = tb_outlet.id_outlet
-    INNER JOIN tb_kategori_paket ON tb_paket.id_kategori_paket = tb_kategori_paket.id_kategori_paket';
+$query = 'Call GetAllPaket()';
 $data = ambildata($conn,$query);
 ?>
 
@@ -42,7 +40,7 @@ $data = ambildata($conn,$query);
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr align="center">
                                     <th width="4%">#</th>
                                     <th>Nama Paket</th>
                                     <th>Jenis</th>

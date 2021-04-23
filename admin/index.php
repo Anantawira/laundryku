@@ -7,7 +7,7 @@ $jPengguna  = ambilsatubaris($conn,'SELECT COUNT(id_user) as jumlahpengguna FROM
 $jTransaksi = ambilsatubaris($conn,'SELECT COUNT(id_transaksi) as jumlahtransaksi FROM tb_transaksi');
 $jPelanggan = ambilsatubaris($conn,'SELECT COUNT(id_member) as jumlahmember FROM tb_member');
 $joutlet    = ambilsatubaris($conn,'SELECT COUNT(id_outlet) as jumlahoutlet FROM tb_outlet');
-$query = "SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.total_harga FROM tb_transaksi INNER JOIN tb_member ON tb_member.id_member = tb_transaksi.id_member INNER JOIN tb_detail_transaksi ON tb_detail_transaksi.id_transaksi = tb_transaksi.id_transaksi ORDER BY tb_transaksi.id_transaksi DESC LIMIT 10";
+$query = "Call GetTransaksiTerbaru()";
 $data = ambildata($conn,$query);
 
 ?>
@@ -68,9 +68,9 @@ $data = ambildata($conn,$query);
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr align="center">
                                     <th width="4%">#</th>
-                                    <th>Invoice</th>
+                                    <th>Kode Transaksi</th>
                                     <th>Pelanggan</th>
                                     <th>Status</th>
                                     <th>Pembayaran</th>

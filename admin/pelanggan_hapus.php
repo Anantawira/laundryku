@@ -1,6 +1,9 @@
 <?php 
 require 'functions.php';
-$sql = "DELETE FROM tb_member WHERE id_member = " . $_GET['id'];
+
+$id_pelanggan = $_GET['id'];
+
+$sql = "CAll DeletePelanggan('$id_pelanggan')";
 $exe = mysqli_query($conn,$sql);
 
 if($exe){

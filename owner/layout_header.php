@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link rel="icon" type="image/png" href="../assets/main/dist/assets/img/laundry-icon.ico">
-    <title>Laundryku | Kasir</title>
+    <title>Owner - Laundryku</title>
     <link href="../assets/main/dist/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
