@@ -3,7 +3,7 @@ $title = 'Pelanggan';
 require 'functions.php';
 
 $id_member = $_GET['id'];
-$queryedit = "Call GetAllPelangganId('$id_member')";
+$queryedit = "SELECT * FROM tb_member WHERE id_member = $id_member";
 $edit = ambilsatubaris($conn,$queryedit);
 
 if(isset($_POST['btn-simpan'])){

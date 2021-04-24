@@ -77,7 +77,7 @@ $data = ambilsatubaris($conn, $query);
                             <td><b>No.</b></td>
                             <td><b>Nama Paket</b></td>
                             <td align="center"><b>Qty</b></td>
-                            <td align="right"><b>Harga Paket</b></td>
+                            <td align="right"><b>Total</b></td>
                         </tr>
                         <?php $no = 1;
                         foreach ($penjualan as $transaksi) : ?>
@@ -85,7 +85,7 @@ $data = ambilsatubaris($conn, $query);
                             <td><?= $no++ ?></td>
                             <td><?= $transaksi['nama_paket'] ?></td>
                             <td align="center"><?= $transaksi['qty'] ?></td>
-                            <td align="right"><?= rupiah($transaksi['harga_paket'])  ?></td>
+                            <td align="right"><?= rupiah($transaksi['harga_paket']*$transaksi['qty'])  ?></td>
                         </tr>
                         <?php endforeach ?>
                     </table>
