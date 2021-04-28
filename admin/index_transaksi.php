@@ -22,9 +22,9 @@ $data = ambildata($conn, $query);
                 </div>
                 <div class="card-body">
                     <div class="col-m-6">
-                        <a href="transaksi_konfirmasi.php" class="btn btn-success box-title"><i
-                                class="fa fa-check fa-fw"></i>
-                            Konfirmasi Pembayaran</a>
+                        <button type="button" value="print" onclick="PrintDiv();" class="btn btn-secondary"><i
+                                class="fa fa-print fa-fw"></i> Cetak Laporan
+                        </button>
                     </div>
                     <br>
                     <div class="table-responsive">
@@ -43,7 +43,8 @@ $data = ambildata($conn, $query);
                             <tbody>
                                 <?php error_reporting(0);
                                     $no = 1;
-                                    foreach ($data as $transaksi) : ?>
+                                    foreach ($data as $transaksi) :                                                          
+                                    ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $transaksi['kode_transaksi'] ?></td>
@@ -63,9 +64,55 @@ $data = ambildata($conn, $query);
                             </tbody>
                         </table>
                     </div>
+                    </>
                 </div>
+
+
+                <div id="divToPrint" style="display:none;">
+                    <div style="width: 750px; margin: auto;">
+                        <br>
+                        <center><b>
+                                LAPORAN DATA OUTLET</b><br>
+                            <caption>"LAUNDRYKU"</caption> <br><br>
+                            <table width="100%">
+                                <tr>
+                                    <td>LAPORAN</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr align="left">
+                                        <th width="4%">#</th>
+                                        <th>Kode Transaksi</th>
+                                        <th>Pelanggan</th>
+                                        <th>Status</th>
+                                        <th>Status Pembayaran</th>
+                                        <th>Total Harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php error_reporting(0);
+                                    $no = 1;
+                                    foreach ($data as $transaksi) :                                                          
+                                    ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $transaksi['kode_transaksi'] ?></td>
+                                        <td><?= $transaksi['nama_member'] ?></td>
+                                        <td><?= $transaksi['status'] ?></td>
+                                        <td><?= $transaksi['status_bayar'] ?></td>
+                                        <td><?= rupiah($transaksi['total_harga']) ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </center>
+                    </div>
+                </div>
+
+
             </div>
-        </div>
     </main>
 
     <?php 

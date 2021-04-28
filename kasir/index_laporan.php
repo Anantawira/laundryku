@@ -4,14 +4,12 @@ require 'functions.php';
 require 'layout_header.php';
 
 $tgl_sekarang = Date('Y-m-d h:i:s');
-$bulan = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND MONTH(tgl_bayar) = MONTH(NOW())");
-$tahun = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND YEAR(tgl_bayar) = YEAR(NOW())");
-$minggu = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND WEEK(tgl_bayar) = WEEK(NOW())");
-$jTransaksi = ambilsatubaris($conn,'SELECT COUNT(id_transaksi) as jumlahtransaksi FROM tb_transaksi');
+$bulan = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND MONTH(tgl_bayar) = MONTH(NOW()) AND tb_transaksi.id_outlet = " . $_SESSION['id_outlet']);
+$tahun = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND YEAR(tgl_bayar) = YEAR(NOW()) AND tb_transaksi.id_outlet = " . $_SESSION['id_outlet']);
+$minggu = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND WEEK(tgl_bayar) = WEEK(NOW()) AND tb_transaksi.id_outlet = " . $_SESSION['id_outlet']);
+$jTransaksi = ambilsatubaris($conn,"SELECT COUNT(id_transaksi) as jumlahtransaksi FROM tb_transaksi WHERE tb_transaksi.id_outlet = " . $_SESSION['id_outlet']);
 
-$penjualan = ambildata($conn,"SELECT SUM(tb_detail_transaksi.total_harga) AS total,COUNT(tb_detail_transaksi.id_paket) as jumlah_paket,tb_paket.nama_paket,tb_transaksi.tgl_bayar FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi
-INNER JOIN tb_paket ON tb_paket.id_paket = tb_detail_transaksi.id_paket
-WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_paket");
+$penjualan = ambildata($conn,"SELECT SUM(tb_detail_transaksi.total_harga) AS total,COUNT(tb_detail_transaksi.id_paket) as jumlah_paket,tb_paket.nama_paket,tb_transaksi.tgl_bayar FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi INNER JOIN tb_paket ON tb_paket.id_paket = tb_detail_transaksi.id_paket WHERE tb_transaksi.status_bayar = 'dibayar' AND tb_transaksi.id_outlet = " . $_SESSION['id_outlet']);
 
 ?>
 

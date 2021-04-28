@@ -25,7 +25,7 @@
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php"><b>LAUNDRYKU</b></a>
+        <a class="navbar-brand" href="index.php"><b>OWNER LAUNDRYKU</b></a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -50,7 +50,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Menu</div>
+                        <div class="sb-sidenav-menu-heading">HOME</div>
                         <a class="nav-link <?php if($title=='Dashboard'){echo'active';} ?>" href="index.php">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-home fa-fw"></i>

@@ -18,7 +18,7 @@
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php"><b>LAUNDRYKU</b></a>
+        <a class="navbar-brand" href="index.php"><b>ADMIN LAUNDRYKU</b></a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -43,24 +43,25 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Menu</div>
+                        <div class="sb-sidenav-menu-heading">Home</div>
                         <a class="nav-link <?php if($title=='Dashboard'){echo'active';} ?>" href="index.php">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-home fa-fw"></i>
                             </div>
                             Dashboard
                         </a>
-                        <a class="nav-link <?php if($title=='Pengguna'){echo'active';} ?>" href="index_pengguna.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
-                            Pengguna
+                        <a class="nav-link <?php if($title=='Laporan'){echo'active';} ?>" href="index_laporan.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-alt fa-fw"></i></div>
+                            Laporan
                         </a>
+                        <div class="sb-sidenav-menu-heading">Master Data</div>
                         <a class="nav-link <?php if($title=='Outlet'){echo'active';} ?>" href="index_outlet.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
                             Outlet
                         </a>
-                        <a class="nav-link <?php if($title=='Pelanggan'){echo'active';} ?>" href="index_pelanggan.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
-                            Pelanggan
+                        <a class="nav-link <?php if($title=='Pengguna'){echo'active';} ?>" href="index_pengguna.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
+                            Pengguna
                         </a>
                         <a class="nav-link <?php if($title=='Jenis Paket'){echo'active';} ?>"
                             href="index_jenis_paket.php">
@@ -71,18 +72,16 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-archive fa-fw"></i></div>
                             Paket
                         </a>
+                        <div class="sb-sidenav-menu-heading">Transaksi</div>
+                        <a class="nav-link <?php if($title=='Pelanggan'){echo'active';} ?>" href="index_pelanggan.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
+                            Pelanggan
+                        </a>
                         <a class="nav-link <?php if($title=='Transaksi'){echo'active';} ?>" href="index_transaksi.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart fa-fw"></i></div>
                             Transaksi
                         </a>
-                        <a class="nav-link <?php if($title=='Laporan'){echo'active';} ?>" href="index_laporan.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-file-alt fa-fw"></i></div>
-                            Laporan
-                        </a>
                     </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Login Sebagai :</div> Admin
                 </div>
             </nav>
         </div>

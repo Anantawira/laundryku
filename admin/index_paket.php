@@ -24,6 +24,9 @@ $data = ambildata($conn,$query);
                     <div class="col-m-6">
                         <a href="paket_tambah.php" class="btn btn-primary box-title"><i class="fa fa-plus fa-fw"></i>
                             Tambah</a>
+                        <button type="button" value="print" onclick="PrintDiv();" class="btn btn-secondary"><i
+                                class="fa fa-print fa-fw"></i> Cetak Laporan
+                        </button>
                     </div>
                     <br>
 
@@ -76,6 +79,50 @@ $data = ambildata($conn,$query);
                     </div>
                 </div>
             </div>
+
+
+            <div id="divToPrint" style="display:none;">
+                <div style="width: 750px; margin: auto;">
+                    <br>
+                    <center><b>
+                            LAPORAN DATA PAKET</b><br>
+                        <caption>"LAUNDRYKU"</caption> <br><br>
+                        <table width="100%">
+                            <tr>
+                                <td>LAPORAN</td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr align="left">
+                                    <th width="4%">#</th>
+                                    <th>Nama Paket</th>
+                                    <th>Jenis</th>
+                                    <th>Harga</th>
+                                    <th>Outlet</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no=1; foreach($data as $paket): ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $paket['nama_paket'] ?></td>
+                                    <td><?= $paket['nama_kategori'] ?></td>
+                                    <td><?= rupiah($paket['harga_paket']) ?></td>
+                                    <td><?= $paket['nama_outlet'] ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+
+
+
+
         </div>
     </main>
 

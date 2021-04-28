@@ -25,6 +25,9 @@ $data = ambildata($conn,$query);
                         <a href="pelanggan_tambah.php" class="btn btn-primary box-title"><i
                                 class="fa fa-plus fa-fw"></i>
                             Tambah</a>
+                        <button type="button" value="print" onclick="PrintDiv();" class="btn btn-secondary"><i
+                                class="fa fa-print fa-fw"></i> Cetak Laporan
+                        </button>
                     </div>
                     <br>
 
@@ -79,6 +82,50 @@ $data = ambildata($conn,$query);
                     </div>
                 </div>
             </div>
+
+
+            <div id="divToPrint" style="display:none;">
+                <div style="width: 750px; margin: auto;">
+                    <br>
+                    <center><b>
+                            LAPORAN DATA PELANGGAN</b><br>
+                        <caption>"LAUNDRYKU"</caption> <br><br>
+                        <table width="100%">
+                            <tr>
+                                <td>LAPORAN</td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr align="left">
+                                    <th width="4%">#</th>
+                                    <th>Nama</th>
+                                    <th>Alamat</th>
+                                    <th>JK</th>
+                                    <th>No. Telp</th>
+                                    <th>No. KTP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php error_reporting(0);
+                                 $no=1; foreach($data as $member): ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $member['nama_member'] ?></td>
+                                    <td><?= $member['alamat_member'] ?></td>
+                                    <td><?= $member['jenis_kelamin'] ?></td>
+                                    <td><?= $member['telp_member'] ?></td>
+                                    <td><?= $member['no_ktp'] ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+
+
         </div>
     </main>
 

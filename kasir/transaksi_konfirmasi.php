@@ -6,7 +6,7 @@ require 'layout_header.php';
 $query = "SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.total_harga FROM tb_transaksi 
     INNER JOIN tb_member ON tb_member.id_member = tb_transaksi.id_member 
     INNER JOIN tb_detail_transaksi ON tb_detail_transaksi.id_transaksi = tb_transaksi.id_transaksi 
-    WHERE tb_transaksi.status_bayar='belum'";
+    WHERE tb_transaksi.status_bayar='belum' AND tb_transaksi.id_outlet = " . $_SESSION['id_outlet'];
 $data = ambildata($conn, $query);
 ?>
 

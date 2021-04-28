@@ -108,7 +108,7 @@ include_once 'layout_header.php';
                                     <?php else : ?>
                                     <div class="form-group">
                                         <label>Status Pesanan</label>
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="status" disabled>
                                             <?php foreach ($status as $key) : ?>
                                             <?php if ($key == $data['status']) : ?>
                                             <option value="<?= $key ?>" selected><?= $key ?></option>
@@ -121,7 +121,6 @@ include_once 'layout_header.php';
                                     </div>
                                     <?php endif; ?>
                                     <div class="text-right">
-                                        <button type="submit" class="btn btn-primary" name="btn-simpan">Simpan</button>
                                         <a href="index_transaksi.php" onclick="window.history.back();">
                                             <button type="button" class="btn btn-danger">Kembali</button>
                                         </a>
