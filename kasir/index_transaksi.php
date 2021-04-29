@@ -3,9 +3,14 @@ $title = 'Transaksi';
 require 'functions.php';
 require 'layout_header.php';
 
+$tgl_sekarang = Date('Y-m-d h:i:s');
+
 $query = "SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.total_harga FROM tb_transaksi INNER JOIN tb_member ON tb_member.id_member = tb_transaksi.id_member INNER JOIN tb_detail_transaksi ON tb_detail_transaksi.id_transaksi = tb_transaksi.id_transaksi
     WHERE tb_transaksi.id_outlet = " . $_SESSION['id_outlet'];
 $data = ambildata($conn, $query);
+
+$query2 = "SELECT *, tb_outlet.* FROM tb_user INNER JOIN tb_outlet ON tb_outlet.id_outlet = tb_user.id_outlet WHERE tb_outlet.id_outlet = " . $_SESSION['id_outlet'];
+$data2 = ambildata($conn, $query2);
 ?>
 
 <div id="layoutSidenav_content">
@@ -66,9 +71,36 @@ $data = ambildata($conn, $query);
                                     <td><?= $no++ ?></td>
                                     <td><?= $transaksi['kode_transaksi'] ?></td>
                                     <td><?= $transaksi['nama_member'] ?></td>
-                                    <td><?= $transaksi['status'] ?></td>
-                                    <td><?= $transaksi['status_bayar'] ?></td>
-                                    <td><?= rupiah($transaksi['total_harga']) ?></td>
+
+                                    <?php if ($transaksi['status'] == 'baru') : ?>
+                                    <td align="center"><label class="p-1 bg-warning text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status'] ?></label>
+                                    </td>
+                                    <?php elseif ($transaksi['status'] == 'proses') : ?>
+                                    <td align="center"><label class="p-1 bg-primary text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status'] ?></label>
+                                    </td>
+                                    <?php elseif ($transaksi['status'] == 'selesai') : ?>
+                                    <td align="center"><label class="p-1 bg-secondary text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status'] ?></label>
+                                    </td>
+                                    <?php elseif ($transaksi['status'] == 'diambil') : ?>
+                                    <td align="center"><label class="p-1 bg-success text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status'] ?></label>
+                                    </td>
+                                    <?php endif; ?>
+
+                                    <?php if ($transaksi['status_bayar'] == 'dibayar') : ?>
+                                    <td align="center"><label class="p-1 bg-success text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status_bayar'] ?></label>
+                                    </td>
+                                    <?php else : ?>
+                                    <td align="center"><label class="p-1 bg-danger text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status_bayar'] ?></label>
+                                    </td>
+                                    <?php endif; ?>
+
+                                    <td align="right"><?= rupiah($transaksi['total_harga']) ?></td>
                                     <td align="center">
                                         <a href="transaksi_detail.php?id=<?= $transaksi['id_transaksi']; ?>">
                                             <button type="button" class="btn btn-success btn-sm">
@@ -86,14 +118,19 @@ $data = ambildata($conn, $query);
 
 
             <div id="divToPrint" style="display:none;">
-                <div style="width: 750px; margin: auto;">
+                <div style="width: 800px; margin: auto;">
                     <br>
                     <center><b>
-                            LAPORAN DATA TRANSAKSI</b><br>
-                        <caption>"LAUNDRYKU"</caption> <br><br>
+                            LAPORAN DATA TRANSAKSI LAUNDRYKU</b><br>
+                        <?php foreach ($data2 as $get) : ?>
+                        <b>"<?= $get['nama_outlet'] ?>"</b><br>
+                        <?= $get['alamat_outlet'] ?><br>
+                        Telp <?= $get['telp_outlet'] ?>
+                        <?php endforeach; ?><br><br>
                         <table width="100%">
                             <tr>
                                 <td>LAPORAN</td>
+                                <td align="right"><?php echo $tgl_sekarang ?></td>
                             </tr>
                         </table>
                         <hr>

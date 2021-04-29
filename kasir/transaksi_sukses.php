@@ -12,6 +12,9 @@ $query = 'SELECT tb_transaksi.*,tb_member.nama_member , tb_detail_transaksi.tota
     WHERE tb_transaksi.id_transaksi = ' . $_GET['id'];
 $data = ambilsatubaris($conn, $query);
 
+$query2 = "SELECT *, tb_outlet.* FROM tb_user INNER JOIN tb_outlet ON tb_outlet.id_outlet = tb_user.id_outlet WHERE tb_outlet.id_outlet = " . $_SESSION['id_outlet'];
+$data2 = ambildata($conn, $query2);
+
 ?>
 
 <div id="layoutSidenav_content">
@@ -57,32 +60,50 @@ $data = ambilsatubaris($conn, $query);
 
 
         <div id="divToPrint" style="display:none;">
-            <div style="width: 750px; margin: auto;">
+            <div style="width: 500px; margin: auto;">
                 <br>
                 <center>
-                    <h3><b>
-                            BUKTI PEMBAYARAN</b></h3><br>
-                    Pesanan Atas Nama : <b><?= $data['nama_member'] ?></b><br>
-                    Kode Transaksi : <b><?= $data['kode_transaksi'] ?></b>
-                    <br><br>
+                    <b>NOTA TRANSAKSI LAUNDRYKU</b><br>
+                    <?php foreach ($data2 as $get) : ?>
+                    <b>"<?=  $get['nama_outlet'] ?>"</b><br>
+                    <?=  $get['alamat_outlet'] ?><br>
+                    Telp. <?= $get['telp_outlet'] ?>
+                    <?php endforeach; ?><br><br><br>
                     <table width="100%">
                         <tr>
-                            <td>NOTA</td>
+                            <td>User : <?= $get['nama_user'] ?></td>
                             <td align="right"><?php echo $tgl_sekarang ?></td>
                         </tr>
                     </table>
                     <hr>
                     <table width="100%">
                         <tr>
-                            <td><b>No.</b></td>
-                            <td><b>Nama Paket</b></td>
-                            <td align="center"><b>Qty</b></td>
-                            <td align="right"><b>Total</b></td>
+                            <td width="23%" align="left">
+                                Kode Transaksi
+                            </td>
+                            <td width="76%" align="left">
+                                : <?= $data['kode_transaksi'] ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="23%" align="left">
+                                Atas Nama
+                            </td>
+                            <td width="76%" align="left">
+                                : <?= $data['nama_member'] ?>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <table width="100%">
+                        <tr>
+                            <td>Nama Paket</td>
+                            <td align="center">Qty</td>
+                            <td align="right">Harga</td>
                         </tr>
                         <?php $no = 1;
                         foreach ($penjualan as $transaksi) : ?>
                         <tr>
-                            <td><?= $no++ ?></td>
                             <td><?= $transaksi['nama_paket'] ?></td>
                             <td align="center"><?= $transaksi['qty'] ?></td>
                             <td align="right"><?= rupiah($transaksi['harga_paket']*$transaksi['qty'])  ?></td>
@@ -115,11 +136,40 @@ $data = ambilsatubaris($conn, $query);
                                 <?= rupiah($transaksi['pajak']) ?>
                             </td>
                         </tr>
+                    </table>
+                    <hr>
+                    <table width="100%">
                         <tr>
-                            <td width="76%" align="right"><b> Total Biaya :</b></td>
-                            <td width="23%" align="right"><b><?= rupiah($transaksi['total_harga']) ?></b></td>
+                            <td width="76%" align="right">
+                                Total Pembayaran :
+                            </td>
+                            <td width="23%" align="right">
+                                <?= rupiah($transaksi['total_harga']) ?>
+                            </td>
                         </tr>
                     </table>
+                    <hr>
+                    <table width="100%">
+                        <tr>
+                            <td></td>
+                            <td align="right">
+                                Total Bayar :
+                            </td>
+                            <td align="right">
+                                Belum dibayar
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td align="right">
+                                Batas Waktu Pembayaran :
+                            </td>
+                            <td align="right">
+                                <?= $data['batas_waktu'] ?>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
                     <br>
                     Terima Kasih <br>
                     Laundryku

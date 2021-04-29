@@ -3,6 +3,8 @@ $title = 'Laporan';
 require 'functions.php';
 require 'layout_header.php';
 
+$tgl_sekarang = Date('Y-m-d h:i:s');
+
 $bulan = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND MONTH(tgl_bayar) = MONTH(NOW())");
 $tahun = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND YEAR(tgl_bayar) = YEAR(NOW())");
 $minggu = ambilsatubaris($conn,"SELECT SUM(total_harga) AS total FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi WHERE status_bayar = 'dibayar' AND WEEK(tgl_bayar) = WEEK(NOW())");
@@ -93,7 +95,7 @@ WHERE tb_transaksi.status_bayar = 'dibayar' GROUP BY tb_detail_transaksi.id_pake
                                     <td><?= $transaksi['nama_paket'] ?></td>
                                     <td><?= $transaksi['jumlah_paket'] ?></td>
                                     <td><?= $transaksi['tgl_bayar'] ?></td>
-                                    <td><?= rupiah($transaksi['total']) ?></td>
+                                    <td align="right"><?= rupiah($transaksi['total']) ?></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

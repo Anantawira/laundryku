@@ -11,6 +11,8 @@ $jTransaksi = ambilsatubaris($conn,"SELECT COUNT(id_transaksi) as jumlahtransaks
 
 $penjualan = ambildata($conn,"SELECT SUM(tb_detail_transaksi.total_harga) AS total,COUNT(tb_detail_transaksi.id_paket) as jumlah_paket,tb_paket.nama_paket,tb_transaksi.tgl_bayar FROM tb_detail_transaksi INNER JOIN tb_transaksi ON tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi INNER JOIN tb_paket ON tb_paket.id_paket = tb_detail_transaksi.id_paket WHERE tb_transaksi.status_bayar = 'dibayar' AND tb_transaksi.id_outlet = " . $_SESSION['id_outlet']);
 
+$query = "SELECT *, tb_outlet.* FROM tb_user INNER JOIN tb_outlet ON tb_outlet.id_outlet = tb_user.id_outlet WHERE tb_outlet.id_outlet = " . $_SESSION['id_outlet'];
+$data = ambildata($conn, $query);
 ?>
 
 <div id="layoutSidenav_content">
@@ -92,7 +94,7 @@ $penjualan = ambildata($conn,"SELECT SUM(tb_detail_transaksi.total_harga) AS tot
                                     <td><?= $transaksi['nama_paket'] ?></td>
                                     <td><?= $transaksi['jumlah_paket'] ?></td>
                                     <td><?= $transaksi['tgl_bayar'] ?></td>
-                                    <td><?= rupiah($transaksi['total']) ?></td>
+                                    <td align="right"><?= rupiah($transaksi['total']) ?></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -102,13 +104,18 @@ $penjualan = ambildata($conn,"SELECT SUM(tb_detail_transaksi.total_harga) AS tot
             </div>
 
             <div id="divToPrint" style="display:none;">
-                <div style="width: 750px; margin: auto;">
+                <div style="width: 600px; margin: auto;">
                     <br>
                     <center><b>
-                            LAPORAN TRANSAKSI LAUNDRYKU</b><br><br>
+                            LAPORAN TRANSAKSI LAUNDRYKU</b><br>
+                        <?php foreach ($data as $get) : ?>
+                        <b>"<?= $get['nama_outlet'] ?>"</b><br>
+                        <?= $get['alamat_outlet'] ?><br>
+                        Telp <?= $get['telp_outlet'] ?>
+                        <?php endforeach; ?><br><br>
                         <table width="100%">
                             <tr>
-                                <td>LAPORAN</td>
+                                <td>User : <?= $get['nama_user'] ?></td>
                                 <td align="right"><?php echo $tgl_sekarang ?></td>
                             </tr>
                         </table>
@@ -158,8 +165,10 @@ $penjualan = ambildata($conn,"SELECT SUM(tb_detail_transaksi.total_harga) AS tot
                             </tr>
                         </table>
                         <br>
-                        Terima Kasih <br>
-                        Laundryku
+                        Outlet <br>
+                        <?php foreach ($data as $get) : ?>
+                        <?= $get['nama_outlet'] ?>
+                        <?php endforeach; ?>
                     </center>
                 </div>
             </div>

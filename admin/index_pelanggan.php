@@ -3,6 +3,8 @@ $title = 'Pelanggan';
 require 'functions.php';
 require 'layout_header.php';
 
+$tgl_sekarang = Date('Y-m-d h:i:s');
+
 $query = 'Call GetAllPelanggan()';
 $data = ambildata($conn,$query);
 ?>
@@ -93,6 +95,7 @@ $data = ambildata($conn,$query);
                         <table width="100%">
                             <tr>
                                 <td>LAPORAN</td>
+                                <td align="right"><?php echo $tgl_sekarang ?></td>
                             </tr>
                         </table>
                         <hr>

@@ -3,6 +3,8 @@ $title = 'Paket';
 require 'functions.php';
 require 'layout_header.php';
 
+$tgl_sekarang = Date('Y-m-d h:i:s');
+
 $query = 'Call GetAllPaket()';
 $data = ambildata($conn,$query);
 ?>
@@ -59,7 +61,7 @@ $data = ambildata($conn,$query);
                                     <td><?= $no++ ?></td>
                                     <td><?= $paket['nama_paket'] ?></td>
                                     <td><?= $paket['nama_kategori'] ?></td>
-                                    <td><?= rupiah($paket['harga_paket']) ?></td>
+                                    <td align="right"><?= rupiah($paket['harga_paket']) ?></td>
                                     <td><?= $paket['nama_outlet'] ?></td>
                                     <td align="center">
                                         <div class="btn-group-sm" role="group" aria-label="Basic example">
@@ -90,6 +92,7 @@ $data = ambildata($conn,$query);
                         <table width="100%">
                             <tr>
                                 <td>LAPORAN</td>
+                                <td align="right"><?php echo $tgl_sekarang ?></td>
                             </tr>
                         </table>
                         <hr>

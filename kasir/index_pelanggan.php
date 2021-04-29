@@ -3,6 +3,8 @@ $title = 'Pelanggan';
 require 'functions.php';
 require 'layout_header.php';
 
+$tgl_sekarang = Date('Y-m-d h:i:s');
+
 $query = 'Call GetAllPelanggan()';
 $data = ambildata($conn,$query);
 ?>
@@ -85,7 +87,7 @@ $data = ambildata($conn,$query);
 
 
             <div id="divToPrint" style="display:none;">
-                <div style="width: 750px; margin: auto;">
+                <div style="width: 800px; margin: auto;">
                     <br>
                     <center><b>
                             LAPORAN DATA PELANGGAN</b><br>
@@ -93,6 +95,7 @@ $data = ambildata($conn,$query);
                         <table width="100%">
                             <tr>
                                 <td>LAPORAN</td>
+                                <td align="right"><?php echo $tgl_sekarang ?></td>
                             </tr>
                         </table>
                         <hr>

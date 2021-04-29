@@ -49,9 +49,36 @@ $data = ambildata($conn, $query);
                                     <td><?= $no++ ?></td>
                                     <td><?= $transaksi['kode_transaksi'] ?></td>
                                     <td><?= $transaksi['nama_member'] ?></td>
-                                    <td><?= $transaksi['status'] ?></td>
-                                    <td><?= $transaksi['status_bayar'] ?></td>
-                                    <td><?= rupiah($transaksi['total_harga']) ?></td>
+
+                                    <?php if ($transaksi['status'] == 'baru') : ?>
+                                    <td align="center"><label class="p-1 bg-warning text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status'] ?></label>
+                                    </td>
+                                    <?php elseif ($transaksi['status'] == 'proses') : ?>
+                                    <td align="center"><label class="p-1 bg-primary text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status'] ?></label>
+                                    </td>
+                                    <?php elseif ($transaksi['status'] == 'selesai') : ?>
+                                    <td align="center"><label class="p-1 bg-secondary text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status'] ?></label>
+                                    </td>
+                                    <?php elseif ($transaksi['status'] == 'diambil') : ?>
+                                    <td align="center"><label class="p-1 bg-success text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status'] ?></label>
+                                    </td>
+                                    <?php endif; ?>
+
+                                    <?php if ($transaksi['status_bayar'] == 'dibayar') : ?>
+                                    <td align="center"><label class="p-1 bg-success text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status_bayar'] ?></label>
+                                    </td>
+                                    <?php else : ?>
+                                    <td align="center"><label class="p-1 bg-danger text-white"
+                                            style="border-radius: 3px;"><?= $transaksi['status_bayar'] ?></label>
+                                    </td>
+                                    <?php endif; ?>
+
+                                    <td align="right"><?= rupiah($transaksi['total_harga']) ?></td>
                                     <td align="center">
                                         <a href="transaksi_detail.php?id=<?= $transaksi['id_transaksi']; ?>">
                                             <button type="button" class="btn btn-success btn-sm">
@@ -72,7 +99,7 @@ $data = ambildata($conn, $query);
                     <div style="width: 750px; margin: auto;">
                         <br>
                         <center><b>
-                                LAPORAN DATA OUTLET</b><br>
+                                LAPORAN DATA TRANSAKSI</b><br>
                             <caption>"LAUNDRYKU"</caption> <br><br>
                             <table width="100%">
                                 <tr>
