@@ -72,7 +72,7 @@ $data2 = ambildata($conn, $query2);
                     <table width="100%">
                         <tr>
                             <td>User : <?= $get['nama_user'] ?></td>
-                            <td align="right"><?php echo $tgl_sekarang ?></td>
+                            <td align="right"><?= $data['tgl_transaksi'] ?></td>
                         </tr>
                     </table>
                     <hr>
@@ -170,6 +170,13 @@ $data2 = ambildata($conn, $query2);
                         </tr>
                     </table>
                     <hr>
+                    <table width="100%">
+                        <?php foreach ($penjualan as $get) : ?>
+                        <tr>
+                            <td><i>Catatan : <?= $get['keterangan'] ?></i></td>
+                        </tr>
+                        <?php endforeach ?>
+                    </table>
                     <br>
                     Terima Kasih <br>
                     Laundryku
