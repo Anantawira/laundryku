@@ -34,6 +34,7 @@ $data = ambildata($conn, $query);
                                     <th width="4%">#</th>
                                     <th>Kode Transaksi</th>
                                     <th>Pelanggan</th>
+                                    <th>Outlet</th>
                                     <th>Status</th>
                                     <th>Status Pembayaran</th>
                                     <th>Total Harga</th>
@@ -49,6 +50,7 @@ $data = ambildata($conn, $query);
                                     <td><?= $no++ ?></td>
                                     <td><?= $transaksi['kode_transaksi'] ?></td>
                                     <td><?= $transaksi['nama_member'] ?></td>
+                                    <td><?= $transaksi['nama_outlet'] ?></td>
 
                                     <?php if ($transaksi['status'] == 'baru') : ?>
                                     <td align="center"><label class="p-1 bg-warning text-white"
@@ -113,6 +115,7 @@ $data = ambildata($conn, $query);
                                         <th width="4%">#</th>
                                         <th>Kode Transaksi</th>
                                         <th>Pelanggan</th>
+                                        <th>Outlet</th>
                                         <th>Status</th>
                                         <th>Status Pembayaran</th>
                                         <th>Total Harga</th>
@@ -127,6 +130,7 @@ $data = ambildata($conn, $query);
                                         <td><?= $no++ ?></td>
                                         <td><?= $transaksi['kode_transaksi'] ?></td>
                                         <td><?= $transaksi['nama_member'] ?></td>
+                                        <td><?= $transaksi['outlet'] ?></td>
                                         <td><?= $transaksi['status'] ?></td>
                                         <td><?= $transaksi['status_bayar'] ?></td>
                                         <td><?= rupiah($transaksi['total_harga']) ?></td>
